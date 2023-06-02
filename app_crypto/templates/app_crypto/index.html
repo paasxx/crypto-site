@@ -1,0 +1,39 @@
+{% extends "app_crypto/base.html" %}
+
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'app_crypto/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<h1>Data from Cryptocurrencies </h1>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Open</th>
+        <th>High</th>
+        <th>Low</th>
+        <th>Close</th>
+        <th>Adj Close</th>
+        <th>Volume</th>
+    </tr>
+
+    {% for value in bitcoin|dictsortreversed:'date' %}
+    <tr>
+        <td align="center">{{value.date}}</td>
+        <td align="center">{{value.open}}</td>
+        <td align="center ">{{value.high}}</td>
+        <td align="center">{{value.low}}</td>
+        <td align="center">{{value.close}}</td>
+        <td align="center">{{value.adj_close}}</td>
+        <td align="center">{{value.volume}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
