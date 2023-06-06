@@ -42,3 +42,9 @@ def market(request, crypto):
         "crypto_data": crypto_data,
     }
     return render(request, "app_crypto/crypto_list.html", context)
+
+
+def plot(request, crypto):
+    context = {"currencies": currencies, "crypto": crypto}
+
+    return render(request, "app_crypto/plot.html", context)

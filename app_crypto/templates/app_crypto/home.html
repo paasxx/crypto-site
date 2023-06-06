@@ -16,6 +16,7 @@
     <tr>
         <th>Currencies</th>
         <th>Market Data</th>
+        <th>Plot</th>
 
     </tr>
 
@@ -25,6 +26,7 @@
 
         <td align="center">{{ i }}</td>
         <td align="center "><a href="{% url 'market' i|lower|capfirst %}">Data </a></td>
+        <td align="center "><a href="{% url 'plot' i|lower|capfirst %}">Plot </a></td>
 
     </tr>
 
