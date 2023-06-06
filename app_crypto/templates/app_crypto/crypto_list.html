@@ -9,7 +9,8 @@
 
 
 {% block content %}
-<h1>Data from Cryptocurrencies </h1>
+<h1>{{crypto}} - Market Data </h1>
+
 
 <table>
     <tr>
@@ -22,7 +23,7 @@
         <th>Volume</th>
     </tr>
 
-    {% for value in bitcoin|dictsortreversed:'date' %}
+    {% for value in crypto_data|dictsortreversed:'date' %}
     <tr>
         <td align="center">{{value.date}}</td>
         <td align="center">{{value.open}}</td>
@@ -35,5 +36,7 @@
     {% endfor %}
 
 </table>
+
+
 
 {% endblock %}

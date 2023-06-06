@@ -1,0 +1,40 @@
+{% extends "app_crypto/base.html" %}
+
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'app_crypto/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<h1>Data from Cryptocurrencies </h1>
+
+
+<table>
+    <tr>
+        <th>Currencies</th>
+        <th>Market Data</th>
+
+    </tr>
+
+    {% for i in currencies %}
+
+    <tr>
+
+        <td align="center">{{ i }}</td>
+        <td align="center "><a href="{% url 'market' i|lower|capfirst %}">Data </a></td>
+
+    </tr>
+
+
+
+
+
+    {% endfor %}
+
+</table>
+
+
+{% endblock %}
