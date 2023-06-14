@@ -25,7 +25,7 @@
 
     {% for value in crypto_data|dictsortreversed:'date' %}
     <tr>
-        <td align="center">{{value.date}}</td>
+        <td align="center">{{value.date|date:"d/m/Y"}}</td>
         <td align="center">{{value.open|floatformat:7}}</td>
         <td align="center ">{{value.high|floatformat:7}}</td>
         <td align="center">{{value.low|floatformat:7}}</td>

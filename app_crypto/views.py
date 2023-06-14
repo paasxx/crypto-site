@@ -12,10 +12,10 @@ tables = [m._meta.db_table for c in apps.get_app_configs() for m in c.get_models
 table_class_names = [m.__name__ for c in apps.get_app_configs() for m in c.get_models()]
 
 currencies = [
-    i for i in tables if len(i) <= 4
+    i for i in tables if len(i) <= 5
 ]  # Selecting only names of tickers with less than 4 digits
 
-class_names = [i for i in table_class_names if len(i) <= 4]
+class_names = [i for i in table_class_names if len(i) <= 5]
 
 
 # Create your views here.

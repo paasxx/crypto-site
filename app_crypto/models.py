@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Ada(models.Model):
-    date = models.TextField(
+    date = models.DateField(
         db_column="Date", blank=True, null=False, primary_key=True
     )  # Field name made lowercase.
     open = models.FloatField(
@@ -507,34 +507,6 @@ class Trx(models.Model):
         db_table = "TRX"
 
 
-class Uni1(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
-    )  # Field name made lowercase.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = "UNI1"
-
-
 class Usdc(models.Model):
     date = models.TextField(
         db_column="Date", blank=True, null=False, primary_key=True
@@ -649,7 +621,7 @@ class Wtrx(models.Model):
 
 class Xrp(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
