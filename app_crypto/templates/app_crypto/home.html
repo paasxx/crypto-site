@@ -14,29 +14,47 @@
 
 <table>
     <tr>
-        <th>Currencies</th>
+        <th>Currency</th>
         <th>Market Data</th>
         <th>Plot</th>
 
     </tr>
 
-    {% for i in currencies %}
-
     <tr>
+        <div class="container" style="text-align: center;">
+            <td align="center">
 
-        <td align="center">{{ i }}</td>
-        <td align="center "><a href="{% url 'market' i|lower|capfirst %}">Data </a></td>
-        <td align="center "><a href="{% url 'plot' i|lower|capfirst %}">Plot </a></td>
+                <select>
+                    <option disabled hidden selected> -- Select Crypto --</option>
+                    {% for i in currencies %}
+
+                    <option value="{{i}}">{{i}}</option>
+
+                    {% endfor %}
+
+                </select>
+
+
+            </td>
+
+            <td>
+                <h2 align="center" id="teste">Crypto<h2>
+
+            </td>
+
+        </div>
+
+        <script src="static/app_crypto/script.js"></script>
+
+
 
     </tr>
 
 
 
 
-
-    {% endfor %}
-
 </table>
+
 
 
 {% endblock %}
