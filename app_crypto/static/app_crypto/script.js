@@ -1,6 +1,11 @@
 let selection = document.querySelector('select');
-let result = document.querySelector("#teste");
+let result_market_data = document.querySelector("#market_data");
+let result_plot = document.querySelector("#plot");
 
-selection.addEventListener('click', () => {
-    result.innerText = selection.options[selection.selectedIndex].value;
+
+selection.addEventListener('change', () => {
+    result_market_data.innerText = selection.options[selection.selectedIndex].text;
+    result_market_data.href = "market_data/" + selection.options[selection.selectedIndex].text.charAt(0).toUpperCase() + selection.options[selection.selectedIndex].text.slice(1).toLocaleLowerCase();
+
+
 });

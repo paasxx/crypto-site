@@ -9,10 +9,24 @@
 
 
 {% block content %}
-<h1>{{crypto|upper}} - Market Data </h1>
+<h2>{{crypto|upper}} - Market Data </h2>
 
+<hr>
 
-<table>
+<div class="form-group col-md-2 col-lg-2">
+    <label for="publishDateMin">Start Date</label>
+    <input type="date" class="form-control" id="publishDateMin" name="date_min">
+
+    <label for="publishDateMax">End Date</label>
+    <input type="date" class="form-control" id="publishDateMax" name="date_max">
+
+    <button type="submit" class="btn btn-primary">Search</button>
+
+</div>
+
+<hr>
+
+<table id="market_data_table ">
     <tr>
         <th>Date</th>
         <th>Open</th>

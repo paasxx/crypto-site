@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from datetime import datetime
 
 
 from .models import *
@@ -36,7 +37,7 @@ def market(request, crypto):
 
     crypto = getattr(sys.modules[__name__], crypto)
 
-    crypto_data = crypto.objects.all()
+    crypto_data = crypto.objects.filter(date__gte=datetime(2023, 6, 13))
 
     context = {
         "currencies": currencies,
