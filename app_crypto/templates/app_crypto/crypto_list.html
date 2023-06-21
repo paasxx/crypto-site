@@ -14,13 +14,14 @@
 <hr>
 
 <div>
-    <form method="get" action=".">
+    <form method="get" action="">
         <div>
             <label for="startDate">Start Date</label>
-            <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03" value="2018-07-22">
+            <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03"
+                value="{{min_date_table|date:'Y-m-d'}}">
 
             <label for="endDate">End Date</label>
-            <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03" value="2018-07-22">
+            <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03">
 
 
             <button type="submit" class="btn btn-primary">Search</button>

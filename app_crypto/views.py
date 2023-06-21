@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime
+from django.db.models import Max, Min
 
 
 from .models import *
@@ -10,12 +11,12 @@ from django.contrib import admin
 from django.contrib.admin.sites import AlreadyRegistered
 
 
-tables = [m._meta.db_table for c in apps.get_app_configs() for m in c.get_models()]
+table_names = [m._meta.db_table for c in apps.get_app_configs() for m in c.get_models()]
 
 table_class_names = [m.__name__ for c in apps.get_app_configs() for m in c.get_models()]
 
 currencies = [
-    i for i in tables if len(i) <= 5
+    i for i in table_names if len(i) <= 5
 ]  # Selecting only names of tickers with less than 4 digits
 
 class_names = [i for i in table_class_names if len(i) <= 5]
@@ -36,27 +37,46 @@ def market(request, crypto):
     crypto_name = crypto
     crypto = getattr(sys.modules[__name__], crypto)
 
-    start_date = None
-    end_date = None
+    sd = request.GET.get("startDate")
+    ed = request.GET.get("endDate")
 
-    if start_date == None or end_date == None:
+    print(crypto.objects.aggregate(Min("date")))
+
+    min_date_table_str = crypto.objects.aggregate(Min("date"))["date__min"]
+    max_date_table_str = crypto.objects.aggregate(Max("date"))["date__max"]
+
+    min_date_table = datetime.strptime(min_date_table_str, "%Y-%m-%d %H:%M:%S")
+    max_date_table = datetime.strptime(max_date_table_str, "%Y-%m-%d %H:%M:%S")
+
+    if (
+        sd == None or ed == None or sd == "" or ed == ""
+    ):  # testando erro pra primeira entrada na pag e depois de estar nela com input de data vazio ""
         crypto_data = crypto.objects.all()
 
         context = {
             "currencies": currencies,
             "crypto": crypto_name,
             "crypto_data": crypto_data,
+            "min_date_table": min_date_table,
+            "max_date_table": max_date_table,
         }
 
         return render(request, "app_crypto/crypto_list.html", context)
 
     else:
-        sd = request.GET.get("startDate")
-        ed = request.GET.get("endDate")
         start_date = datetime.strptime(sd, "%Y-%m-%d")
         end_date = datetime.strptime(ed, "%Y-%m-%d")
+        crypto_data = crypto.objects.filter(
+            date__range=[start_date, end_date]
+        ).distinct()
 
-        crypto_data = crypto.objects.filter(date=[start_date, end_date]).distinct()
+        context = {
+            "currencies": currencies,
+            "crypto": crypto_name,
+            "crypto_data": crypto_data,
+            "min_date_table": min_date_table,
+            "max_date_table": max_date_table,
+        }
 
         return render(request, "app_crypto/crypto_list.html", context)
 
