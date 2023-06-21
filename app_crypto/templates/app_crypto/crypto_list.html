@@ -13,16 +13,24 @@
 
 <hr>
 
-<div class="form-group col-md-2 col-lg-2">
-    <label for="publishDateMin">Start Date</label>
-    <input type="date" class="form-control" id="publishDateMin" name="date_min">
+<div>
+    <form method="get" action=".">
+        <div>
+            <label for="startDate">Start Date</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03" value="2018-07-22">
 
-    <label for="publishDateMax">End Date</label>
-    <input type="date" class="form-control" id="publishDateMax" name="date_max">
+            <label for="endDate">End Date</label>
+            <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03" value="2018-07-22">
 
-    <button type="submit" class="btn btn-primary">Search</button>
 
+            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="reset" class="btn btn-primary">Reset</button>
+        </div>
+
+    </form>
 </div>
+
+
 
 <hr>
 

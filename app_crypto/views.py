@@ -34,17 +34,31 @@ def home(request):
 
 def market(request, crypto):
     crypto_name = crypto
-
     crypto = getattr(sys.modules[__name__], crypto)
 
-    crypto_data = crypto.objects.filter(date__gte=datetime(2023, 6, 13))
+    start_date = None
+    end_date = None
 
-    context = {
-        "currencies": currencies,
-        "crypto": crypto_name,
-        "crypto_data": crypto_data,
-    }
-    return render(request, "app_crypto/crypto_list.html", context)
+    if start_date == None or end_date == None:
+        crypto_data = crypto.objects.all()
+
+        context = {
+            "currencies": currencies,
+            "crypto": crypto_name,
+            "crypto_data": crypto_data,
+        }
+
+        return render(request, "app_crypto/crypto_list.html", context)
+
+    else:
+        sd = request.GET.get("startDate")
+        ed = request.GET.get("endDate")
+        start_date = datetime.strptime(sd, "%Y-%m-%d")
+        end_date = datetime.strptime(ed, "%Y-%m-%d")
+
+        crypto_data = crypto.objects.filter(date=[start_date, end_date]).distinct()
+
+        return render(request, "app_crypto/crypto_list.html", context)
 
 
 def plot(request, crypto):
