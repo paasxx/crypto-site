@@ -1,75 +1,77 @@
 {% extends "app_crypto/base.html" %}
 
 
-{% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'app_crypto/style.css' %}">
-{% endblock %}
+
+{% endblock head %}
+
 
 
 {% block content %}
+
 <h2>Cryptocurrencies Data </h2>
 
 
-<table>
-    <tr>
-        <th>Currency</th>
-        <th>Market Data</th>
-        <th>Plot</th>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Currency</th>
+            <th scope="col">Market Data</th>
+            <th scope="col">Plot</th>
 
-    </tr>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <div class="container" style="text-align: center;">
 
-    <tr>
-        <div class="container" style="text-align: center;">
-            <td align="center">
+                <td align="left">
 
-                <select>
-                    <option disabled hidden selected> -- Select Crypto --</option>
-                    {% for i in currencies %}
+                    <select>
+                        <option disabled hidden selected> -- Select Crypto --</option>
+                        {% for i in currencies %}
 
-                    <option value="{{i}}">{{i}}</option>
+                        <option value="{{i}}">{{i}}</option>
 
-                    {% endfor %}
+                        {% endfor %}
 
-                </select>
-
-
-            </td>
-
-            <td>
-
-                <div style="text-align:center">
-
-                    <a href="" id="market_data">
-                        Select Crypto
-                    </a>
-
-                </div>
+                    </select>
 
 
+                </td>
+
+                <td>
+
+                    <div style="text-align:left">
+
+                        <a href="" id="market_data">
+                            Select Crypto
+                        </a>
+
+                    </div>
+
+                </td>
+
+                <td>
+                    <h4 align="left" id="plot">Plot</h4>
+
+                </td>
+
+            </div>
+
+            <script src="static/app_crypto/script.js"></script>
 
 
-            </td>
 
-            <td>
-                <h4 align="center" id="plot">Plot</h4>
-
-            </td>
-
-        </div>
-
-        <script src="static/app_crypto/script.js"></script>
+        </tr>
 
 
-
-    </tr>
-
-
+    </tbody>
 
 
 </table>
 
 
 
-{% endblock %}
+{% endblock content %}

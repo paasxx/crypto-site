@@ -1,18 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    {% block head %}
-    {% endblock %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- Bootstrap CSS -->
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'app_crypto/css/bootstrap.css' %}" />
+
+
+    <title>{% block title %} {% endblock %}</title>
 </head>
 
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
+
     <a href="{%url 'home' %}">
-        <h3>Home</h3>
+        <h4>Home</h4>
     </a>
+    {% block head %}
+    {% endblock head %}
+
+
 
     {% block content %}
 
+    {% endblock content %}
 
-    {% endblock %}
+    {% block footer %}
+    <p>Copyright © 2023 mywebsite.com</p>
+    {% endblock footer %}
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+
 
 </body>
+
+</html>

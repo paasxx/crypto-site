@@ -40,18 +40,40 @@ def market(request, crypto):
     sd = request.GET.get("startDate")
     ed = request.GET.get("endDate")
 
-    print(crypto.objects.aggregate(Min("date")))
-
     min_date_table_str = crypto.objects.aggregate(Min("date"))["date__min"]
     max_date_table_str = crypto.objects.aggregate(Max("date"))["date__max"]
 
     min_date_table = datetime.strptime(min_date_table_str, "%Y-%m-%d %H:%M:%S")
     max_date_table = datetime.strptime(max_date_table_str, "%Y-%m-%d %H:%M:%S")
 
-    if (
-        sd == None or ed == None or sd == "" or ed == ""
-    ):  # testando erro pra primeira entrada na pag e depois de estar nela com input de data vazio ""
+    if sd == None and ed == None or sd == "" and ed == "":
         crypto_data = crypto.objects.all()
+
+        context = {
+            "currencies": currencies,
+            "crypto": crypto_name,
+            "crypto_data": crypto_data,
+            "min_date_table": min_date_table,
+            "max_date_table": max_date_table,
+        }
+
+        return render(request, "app_crypto/crypto_list.html", context)
+
+    elif sd == None or sd == "":
+        crypto_data = crypto.objects.filter(date__lte=ed)
+
+        context = {
+            "currencies": currencies,
+            "crypto": crypto_name,
+            "crypto_data": crypto_data,
+            "min_date_table": min_date_table,
+            "max_date_table": max_date_table,
+        }
+
+        return render(request, "app_crypto/crypto_list.html", context)
+
+    elif ed == None or ed == "":
+        crypto_data = crypto.objects.filter(date__gte=sd)
 
         context = {
             "currencies": currencies,
