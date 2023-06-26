@@ -14,30 +14,48 @@
 
 
 
-
 <form method="get" action="">
 
-    <div class="form-inline">
-        <div class="row">
-            <div class="col-sm">
+    <div class="row ">
+        <div class="col">
+            <div class="row"> <span class="input-group-text" id="inputGroup-sizing-sm">Start Date (Minimum:
+                    {{min_date_table|date:'Y-m-d'}})</span>
+                <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
 
-                <label for="startDate">Start Date (Minimum: {{min_date_table|date:'Y-m-d'}}) </label>
-                <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03">
-            </div>
-            <div class="col-sm">
-                <label for="endDate">End Date</label>
-                <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03">
-            </div>
-            <div class="col-sm">
-                <label class="sr-only" for="form-control">Name</label>
-                <button type="submit" class="form-control" id="search">Search</button>
-            </div>
-            <div class="col-sm">
-                <label class="sr-only" for="form-control">Name</label>
-                <button type="reset" class="form-control" id="reset">Reset</button>
-            </div>
         </div>
+        <div class="col">
+            <span class="input-group-text " id="inputGroup-sizing-sm">End Date</span>
+            <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+        <div class="col">
+            <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+            <select class="form-select" id="inlineFormSelectPref">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+
+
+        <div class="col">
+            <label class="visually-hidden" for="btn btn-primary">Preference</label>
+            <button type="submit" class="btn btn-primary" id="search">Search</button>
+        </div>
+        <div class="col">
+            <label class="visually-hidden" for="btn btn-primary">Preference</label>
+            <button type="reset" class="btn btn-primary" id="reset">Reset</button>
+        </div>
+
     </div>
+
+
+
+
 </form>
 
 
