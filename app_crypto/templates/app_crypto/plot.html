@@ -62,30 +62,13 @@
 
 <hr>
 
-<table class="table table-dark" id="market_data_table ">
-    <tr>
-        <th>Date</th>
-        <th>Open</th>
-        <th>High</th>
-        <th>Low</th>
-        <th>Close</th>
-        <th>Adj Close</th>
-        <th>Volume</th>
-    </tr>
 
-    {% for value in crypto_data|dictsortreversed:'date' %}
-    <tr>
-        <td align="center">{{value.date|date:"d/m/Y"}}</td>
-        <td align="center">{{value.open|floatformat:7}}</td>
-        <td align="center ">{{value.high|floatformat:7}}</td>
-        <td align="center">{{value.low|floatformat:7}}</td>
-        <td align="center">{{value.close|floatformat:7}}</td>
-        <td align="center">{{value.adj_close|floatformat:7}}</td>
-        <td align="center">{{value.volume}}</td>
-    </tr>
-    {% endfor %}
+<!-- include the call to action html in this new html file -->
+{{plot_crypto|safe}}
 
-</table>
+
+
+
 
 
 
