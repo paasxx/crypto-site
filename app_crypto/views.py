@@ -136,7 +136,10 @@ def plot_html(df, title):
         ]
     )
 
-    fig.update_layout(xaxis_rangeslider_visible=False)
+    fig.update_layout(
+        xaxis_rangeslider_visible=False,
+        template="plotly_dark",
+    )
 
     fig.update_layout(
         title=title,
