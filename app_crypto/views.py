@@ -137,16 +137,19 @@ def plot_html(df, title):
     )
 
     fig.update_layout(
-        xaxis_rangeslider_visible=False,
+        xaxis_rangeslider_visible=True,
         template="plotly_dark",
     )
 
     fig.update_layout(
         title=title,
         yaxis_title="Price",
+        autosize=True,
+        # width=500,
+        height=1000,
+        margin=dict(l=50, r=50, b=100, t=100, pad=4),
     )
-    print(type(fig))
-    # figu = plot({"data": fig}, output_type="div")
+
     return fig.to_html()
 
     # fig.write_html(title + ".html")
