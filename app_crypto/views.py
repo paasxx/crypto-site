@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime
 from django.db.models import Max, Min
+from django.contrib import messages
+
 
 import pandas as pd
 
@@ -59,33 +61,6 @@ def market(request, crypto):
 
     if sd == None and ed == None or sd == "" and ed == "":
         crypto_data = crypto.objects.all()
-        print(type(crypto_data))
-
-        context = {
-            "currencies": currencies,
-            "crypto": crypto_name,
-            "crypto_data": crypto_data,
-            "min_date_table": min_date_table,
-            "max_date_table": max_date_table,
-        }
-
-        return render(request, "app_crypto/crypto_list.html", context)
-
-    elif sd == None or sd == "":
-        crypto_data = crypto.objects.filter(date__lte=ed)
-
-        context = {
-            "currencies": currencies,
-            "crypto": crypto_name,
-            "crypto_data": crypto_data,
-            "min_date_table": min_date_table,
-            "max_date_table": max_date_table,
-        }
-
-        return render(request, "app_crypto/crypto_list.html", context)
-
-    elif ed == None or ed == "":
-        crypto_data = crypto.objects.filter(date__gte=sd)
 
         context = {
             "currencies": currencies,
@@ -98,21 +73,65 @@ def market(request, crypto):
         return render(request, "app_crypto/crypto_list.html", context)
 
     else:
-        start_date = datetime.strptime(sd, "%Y-%m-%d")
-        end_date = datetime.strptime(ed, "%Y-%m-%d")
-        crypto_data = crypto.objects.filter(
-            date__range=[start_date, end_date]
-        ).distinct()
+        if datetime.strptime(ed, "%Y-%m-%d") < datetime.strptime(sd, "%Y-%m-%d"):
+            messages.warning(
+                request, "End Date must be greater than Start Date, Please try again."
+            )
+            crypto_data = crypto.objects.all()
 
-        context = {
-            "currencies": currencies,
-            "crypto": crypto_name,
-            "crypto_data": crypto_data,
-            "min_date_table": min_date_table,
-            "max_date_table": max_date_table,
-        }
+            context = {
+                "currencies": currencies,
+                "crypto": crypto_name,
+                "crypto_data": crypto_data,
+                "min_date_table": min_date_table,
+                "max_date_table": max_date_table,
+            }
 
-        return render(request, "app_crypto/crypto_list.html", context)
+            return render(request, "app_crypto/crypto_list.html", context)
+
+        else:
+            if sd == None or sd == "":
+                crypto_data = crypto.objects.filter(date__lte=ed)
+
+                context = {
+                    "currencies": currencies,
+                    "crypto": crypto_name,
+                    "crypto_data": crypto_data,
+                    "min_date_table": min_date_table,
+                    "max_date_table": max_date_table,
+                }
+
+                return render(request, "app_crypto/crypto_list.html", context)
+
+            elif ed == None or ed == "":
+                crypto_data = crypto.objects.filter(date__gte=sd)
+
+                context = {
+                    "currencies": currencies,
+                    "crypto": crypto_name,
+                    "crypto_data": crypto_data,
+                    "min_date_table": min_date_table,
+                    "max_date_table": max_date_table,
+                }
+
+                return render(request, "app_crypto/crypto_list.html", context)
+
+            else:
+                start_date = datetime.strptime(sd, "%Y-%m-%d")
+                end_date = datetime.strptime(ed, "%Y-%m-%d")
+                crypto_data = crypto.objects.filter(
+                    date__range=[start_date, end_date]
+                ).distinct()
+
+                context = {
+                    "currencies": currencies,
+                    "crypto": crypto_name,
+                    "crypto_data": crypto_data,
+                    "min_date_table": min_date_table,
+                    "max_date_table": max_date_table,
+                }
+
+                return render(request, "app_crypto/crypto_list.html", context)
 
 
 def plot_html(df, title):
