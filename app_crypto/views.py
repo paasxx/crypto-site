@@ -150,8 +150,8 @@ def plot_html(df, title):
     fig.update_layout(
         xaxis_rangeslider_visible=False,
         template="plotly_dark",
-        plot_bgcolor="rgba(0, 0, 0, 0.2)",
-        paper_bgcolor="rgba(0, 0, 0, 0.2)",
+        # plot_bgcolor="rgba(0, 0, 0, 0)",
+        # paper_bgcolor="rgba(0, 0, 0, 0)",
     )
 
     fig.update_layout(
@@ -167,21 +167,44 @@ def plot_html(df, title):
         mirror=True,
         ticks="outside",
         showline=True,
-        linecolor="grey",
-        gridcolor="grey",
+        # linecolor="grey",
+        # gridcolor="grey",
         title_standoff=0,
+        gridwidth=0.2,
+        linewidth=0.1,
     )
     fig.update_yaxes(
         mirror=True,
         ticks="outside",
         showline=True,
-        linecolor="grey",
-        gridcolor="grey",
+        # linecolor="grey",
+        # gridcolor="grey",
         title_standoff=10,
+        gridwidth=0.2,
+        linewidth=0.1,
     )
 
+    def SetColor(df):
+        color = []
+        for i in df.index:
+            if df["close"][i] > df["open"][i]:
+                color.append("green")
+            else:
+                color.append("red")
+
+        return color
+
     # Bar trace for volumes on 2nd row without legend
-    fig.add_trace(go.Bar(x=df["date"], y=df["volume"], showlegend=False), row=2, col=1)
+    fig.add_trace(
+        go.Bar(
+            x=df["date"],
+            y=df["volume"],
+            showlegend=False,
+            marker=dict(color=SetColor(df)),
+        ),
+        row=2,
+        col=1,
+    )
 
     fig.update_layout(
         annotations=[
@@ -195,7 +218,7 @@ def plot_html(df, title):
                     ),
                 }
             )
-        ]
+        ],
     )
 
     return fig.to_html()
