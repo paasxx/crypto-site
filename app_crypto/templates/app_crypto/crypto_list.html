@@ -1,80 +1,100 @@
 {% extends "app_crypto/base.html" %}
 
 
+{% block title %}
+<h2>{{crypto|upper}} - Market Data </h2>
+{% endblock title %}
+
 
 {% block head %}
 
-{% endblock %}
+{% endblock head %}
 
 
 {% block content %}
-<h2>{{crypto|upper}} - Market Data </h2>
+
+
+
 
 <hr>
 
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-warning" role="alert">
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
 
 
-<form method="get" action="">
 
-    {% for msg in messages%}
-    {{msg}}
-    {% endfor %}
+<form class="row row-cols-lg-auto g-3 align-items-center" method="get" action="">
 
-    <div class="row ">
-        <div class="col">
-            <div class="row"> <span class="input-group-text" id="inputGroup-sizing-sm">Start Date (Minimum:
-                    {{min_date_table|date:'Y-m-d'}})</span>
-                <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03"
-                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
 
+
+    <div class="col-12">
+        <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Start Date (Minimum:
+                {{min_date_table|date:'Y-m-d'}})</span>
+            <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
-        <div class="col">
+    </div>
+
+    <div class="col-12">
+        <div class="input-group">
             <span class="input-group-text " id="inputGroup-sizing-sm">End Date</span>
             <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03"
                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
-        <div class="col">
-            <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-            <select class="form-select" id="inlineFormSelectPref">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
+    </div>
 
+    <div class="col-12">
 
-        <div class="col">
-            <label class="visually-hidden" for="btn btn-primary">Preference</label>
-            <button type="submit" class="btn btn-primary" id="search">Search</button>
-        </div>
-        <div class="col">
-            <label class="visually-hidden" for="btn btn-primary">Preference</label>
-            <button type="reset" class="btn btn-primary" id="reset">Reset</button>
-        </div>
+        <select class="form-select" id="inlineFormSelectPref">
 
+            <option disabled hidden selected> -- Select Crypto --</option>
+            {% for i in currencies %}
+
+            <option value="{{i}}">{{i}}</option>
+
+            {% endfor %}
+
+        </select>
     </div>
 
 
+    <div class="col-12">
+        <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
+        <button type="submit" class="btn btn-outline-primary" id="search">Search</button>
+    </div>
+
+    <div class="col-12">
+        <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
+        <button type="reset" class="btn btn-outline-primary" id="reset">Reset</button>
+    </div>
 
 
 </form>
 
 
 
+
+
 <hr>
 
-<table class="table table-dark" id="market_data_table ">
+<table class="table table-dark table-hover" id="market_data_table ">
     <tr>
-        <th>Date</th>
-        <th>Open</th>
-        <th>High</th>
-        <th>Low</th>
-        <th>Close</th>
-        <th>Adj Close</th>
-        <th>Volume</th>
+        <th style="text-align: center">Date</th>
+        <th style="text-align: center">Open</th>
+        <th style="text-align: center">High</th>
+        <th style="text-align: center">Low</th>
+        <th style="text-align: center">Close</th>
+        <th style="text-align: center">Adj Close</th>
+        <th style="text-align: center">Volume</th>
     </tr>
 
     {% for value in crypto_data|dictsortreversed:'date' %}
@@ -90,6 +110,8 @@
     {% endfor %}
 
 </table>
+
+<script src="static/app_crypto/script.js"></script>
 
 
 
