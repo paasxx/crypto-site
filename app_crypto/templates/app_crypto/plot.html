@@ -1,6 +1,11 @@
 {% extends "app_crypto/base.html" %}
 
+{% block title %}
+<div class="container-fluid">
+    <h3>{{crypto|upper}} - Plot </h3>
+</div>
 
+{% endblock title %}
 
 {% block head %}
 
@@ -8,59 +13,78 @@
 
 
 {% block content %}
-<h2>{{crypto|upper}} - Market Data </h2>
+
 
 <hr>
 
+<div class="container-fluid">
 
+    {% if messages %}
 
-<form method="get" action="">
+    {% for message in messages %}
+    <div class="alert alert-warning" role="alert">
+        {{message}}
+    </div>
 
-    {% for msg in messages%}
-    {{msg}}
     {% endfor %}
+    {% endif %}
 
-    <div class="row">
-        <div class="col">
-            <div class="row"> <span class="input-group-text" id="inputGroup-sizing-sm">Start Date (Minimum:
+</div>
+
+<div class="container-fluid">
+
+    <form class="row row-cols-lg-auto g-3 align-items-center" method="get" action="">
+
+
+
+        <div class="col-12">
+            <div class="input-group">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Start Date (Minimum:
                     {{min_date_table|date:'Y-m-d'}})</span>
                 <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03"
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
-
-        </div>
-        <div class="col">
-            <span class="input-group-text " id="inputGroup-sizing-sm">End Date</span>
-            <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03"
-                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
-        <div class="col">
-            <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+        <div class="col-12">
+            <div class="input-group">
+                <span class="input-group-text " id="inputGroup-sizing-sm">End Date</span>
+                <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+        </div>
+
+        <div class="col-12">
+
             <select class="form-select" id="inlineFormSelectPref">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+
+                <option disabled hidden selected> -- Select Crypto --</option>
+                {% for i in currencies %}
+
+                <option value="{{i}}">{{i}}</option>
+
+                {% endfor %}
+
             </select>
         </div>
 
 
-        <div class="col">
-            <label class="visually-hidden" for="btn btn-primary">Preference</label>
-            <button type="submit" class="btn btn-primary" id="search">Search</button>
-        </div>
-        <div class="col">
-            <label class="visually-hidden" for="btn btn-primary">Preference</label>
-            <button type="reset" class="btn btn-primary" id="reset">Reset</button>
+        <div class="col-12">
+            <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
+            <button type="submit" class="btn btn-dark border-custom" id="search">Search</button>
         </div>
 
-    </div>
+        <div class="col-12">
+            <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
+            <button type="reset" class="btn btn-dark border-custom" id="reset">Reset</button>
+        </div>
 
 
+    </form>
 
+</div>
 
-</form>
 
 
 

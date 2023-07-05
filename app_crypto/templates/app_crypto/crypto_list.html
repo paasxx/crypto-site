@@ -2,7 +2,10 @@
 
 
 {% block title %}
-<h2>{{crypto|upper}} - Market Data </h2>
+<div class="container-fluid">
+    <h3>{{crypto|upper}} - Market Data </h3>
+</div>
+
 {% endblock title %}
 
 
@@ -73,12 +76,12 @@
 
         <div class="col-12">
             <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
-            <button type="submit" class="btn btn-outline-primary" id="search">Search</button>
+            <button type="submit" class="btn btn-dark border-custom" id="search">Search</button>
         </div>
 
         <div class="col-12">
             <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
-            <button type="reset" class="btn btn-outline-primary" id="reset">Reset</button>
+            <button type="reset" class="btn btn-dark border-custom" id="reset">Reset</button>
         </div>
 
 

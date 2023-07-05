@@ -263,40 +263,7 @@ def plot(request, crypto):
 
     if sd == None and ed == None or sd == "" and ed == "":
         crypto_data = crypto.objects.all()
-        df = pd.DataFrame.from_records(crypto_data.values())
 
-        plot_crypto = plot_html(df, crypto_name)
-
-        context = {
-            "currencies": currencies,
-            "crypto": crypto_name,
-            "crypto_data": crypto_data,
-            "min_date_table": min_date_table,
-            "max_date_table": max_date_table,
-            "plot_crypto": plot_crypto,
-        }
-
-        return render(request, "app_crypto/plot.html", context)
-
-    elif sd == None or sd == "":
-        crypto_data = crypto.objects.filter(date__lte=ed)
-        df = pd.DataFrame.from_records(crypto_data.values())
-
-        plot_crypto = plot_html(df, crypto_name)
-
-        context = {
-            "currencies": currencies,
-            "crypto": crypto_name,
-            "crypto_data": crypto_data,
-            "min_date_table": min_date_table,
-            "max_date_table": max_date_table,
-            "plot_crypto": plot_crypto,
-        }
-
-        return render(request, "app_crypto/plot.html", context)
-
-    elif ed == None or ed == "":
-        crypto_data = crypto.objects.filter(date__gte=sd)
         df = pd.DataFrame.from_records(crypto_data.values())
 
         plot_crypto = plot_html(df, crypto_name)
@@ -313,22 +280,82 @@ def plot(request, crypto):
         return render(request, "app_crypto/plot.html", context)
 
     else:
-        start_date = datetime.strptime(sd, "%Y-%m-%d")
-        end_date = datetime.strptime(ed, "%Y-%m-%d")
-        crypto_data = crypto.objects.filter(
-            date__range=[start_date, end_date]
-        ).distinct()
-        df = pd.DataFrame.from_records(crypto_data.values())
+        if datetime.strptime(ed, "%Y-%m-%d") < datetime.strptime(sd, "%Y-%m-%d"):
+            messages.warning(
+                request, "End Date must be greater than Start Date, Please try again."
+            )
+            crypto_data = crypto.objects.all()
 
-        plot_crypto = plot_html(df, crypto_name)
+            df = pd.DataFrame.from_records(crypto_data.values())
 
-        context = {
-            "currencies": currencies,
-            "crypto": crypto_name,
-            "crypto_data": crypto_data,
-            "min_date_table": min_date_table,
-            "max_date_table": max_date_table,
-            "plot_crypto": plot_crypto,
-        }
+            plot_crypto = plot_html(df, crypto_name)
 
-        return render(request, "app_crypto/plot.html", context)
+            context = {
+                "currencies": currencies,
+                "crypto": crypto_name,
+                "crypto_data": crypto_data,
+                "min_date_table": min_date_table,
+                "max_date_table": max_date_table,
+                "plot_crypto": plot_crypto,
+            }
+
+            return render(request, "app_crypto/plot.html", context)
+
+        else:
+            if sd == None or sd == "":
+                crypto_data = crypto.objects.filter(date__lte=ed)
+
+                df = pd.DataFrame.from_records(crypto_data.values())
+
+                plot_crypto = plot_html(df, crypto_name)
+
+                context = {
+                    "currencies": currencies,
+                    "crypto": crypto_name,
+                    "crypto_data": crypto_data,
+                    "min_date_table": min_date_table,
+                    "max_date_table": max_date_table,
+                    "plot_crypto": plot_crypto,
+                }
+
+                return render(request, "app_crypto/plot.html", context)
+
+            elif ed == None or ed == "":
+                crypto_data = crypto.objects.filter(date__gte=sd)
+
+                df = pd.DataFrame.from_records(crypto_data.values())
+
+                plot_crypto = plot_html(df, crypto_name)
+
+                context = {
+                    "currencies": currencies,
+                    "crypto": crypto_name,
+                    "crypto_data": crypto_data,
+                    "min_date_table": min_date_table,
+                    "max_date_table": max_date_table,
+                    "plot_crypto": plot_crypto,
+                }
+
+                return render(request, "app_crypto/plot.html", context)
+
+            else:
+                start_date = datetime.strptime(sd, "%Y-%m-%d")
+                end_date = datetime.strptime(ed, "%Y-%m-%d")
+                crypto_data = crypto.objects.filter(
+                    date__range=[start_date, end_date]
+                ).distinct()
+
+                df = pd.DataFrame.from_records(crypto_data.values())
+
+                plot_crypto = plot_html(df, crypto_name)
+
+                context = {
+                    "currencies": currencies,
+                    "crypto": crypto_name,
+                    "crypto_data": crypto_data,
+                    "min_date_table": min_date_table,
+                    "max_date_table": max_date_table,
+                    "plot_crypto": plot_crypto,
+                }
+
+                return render(request, "app_crypto/plot.html", context)
