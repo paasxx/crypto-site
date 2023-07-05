@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "demo.css",
+	"sources": [
+		"demo.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,iCAAiC;AAIjC,AAAA,IAAI,CAAC;EACD,IAAI,EAAE,IAAI,CAJD,SAAS,EAAE,UAAU;EAK9B,KAAK,EAJO,OAAO;EAKnB,gBAAgB,EALJ,OAAO,GAMtB;;AAED,AAAA,gBAAgB,CAAC;EACb,+BAA+B;EAC/B,UAAU,EAAE,OAAO;EAEnB,gCAAgC;EAChC,UAAU,EAAE,oFAAoF;EAEhG,sEAAsE;EACtE,UAAU,EAAE,4DAA0E,GACzF"
+}

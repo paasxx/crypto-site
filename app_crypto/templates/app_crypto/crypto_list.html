@@ -18,98 +18,106 @@
 
 <hr>
 
-{% if messages %}
+<div class="container-fluid">
 
-{% for message in messages %}
-<div class="alert alert-warning" role="alert">
-    {{message}}
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-warning" role="alert">
+        {{message}}
+    </div>
+
+    {% endfor %}
+    {% endif %}
+
 </div>
 
-{% endfor %}
-{% endif %}
+<div class="container-fluid">
+
+    <form class="row row-cols-lg-auto g-3 align-items-center" method="get" action="">
 
 
 
-<form class="row row-cols-lg-auto g-3 align-items-center" method="get" action="">
-
-
-
-    <div class="col-12">
-        <div class="input-group">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Start Date (Minimum:
-                {{min_date_table|date:'Y-m-d'}})</span>
-            <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03"
-                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-        </div>
-    </div>
-
-    <div class="col-12">
-        <div class="input-group">
-            <span class="input-group-text " id="inputGroup-sizing-sm">End Date</span>
-            <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03"
-                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <div class="col-12">
+            <div class="input-group">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Start Date (Minimum:
+                    {{min_date_table|date:'Y-m-d'}})</span>
+                <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
         </div>
 
-    </div>
+        <div class="col-12">
+            <div class="input-group">
+                <span class="input-group-text " id="inputGroup-sizing-sm">End Date</span>
+                <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
 
-    <div class="col-12">
+        </div>
 
-        <select class="form-select" id="inlineFormSelectPref">
+        <div class="col-12">
 
-            <option disabled hidden selected> -- Select Crypto --</option>
-            {% for i in currencies %}
+            <select class="form-select" id="inlineFormSelectPref">
 
-            <option value="{{i}}">{{i}}</option>
+                <option disabled hidden selected> -- Select Crypto --</option>
+                {% for i in currencies %}
 
-            {% endfor %}
+                <option value="{{i}}">{{i}}</option>
 
-        </select>
-    </div>
+                {% endfor %}
 
-
-    <div class="col-12">
-        <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
-        <button type="submit" class="btn btn-outline-primary" id="search">Search</button>
-    </div>
-
-    <div class="col-12">
-        <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
-        <button type="reset" class="btn btn-outline-primary" id="reset">Reset</button>
-    </div>
+            </select>
+        </div>
 
 
-</form>
+        <div class="col-12">
+            <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
+            <button type="submit" class="btn btn-outline-primary" id="search">Search</button>
+        </div>
+
+        <div class="col-12">
+            <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
+            <button type="reset" class="btn btn-outline-primary" id="reset">Reset</button>
+        </div>
 
 
+    </form>
+
+</div>
 
 
 
 <hr>
 
-<table class="table table-dark table-hover" id="market_data_table ">
-    <tr>
-        <th style="text-align: center">Date</th>
-        <th style="text-align: center">Open</th>
-        <th style="text-align: center">High</th>
-        <th style="text-align: center">Low</th>
-        <th style="text-align: center">Close</th>
-        <th style="text-align: center">Adj Close</th>
-        <th style="text-align: center">Volume</th>
-    </tr>
+<div class="container-fluid">
 
-    {% for value in crypto_data|dictsortreversed:'date' %}
-    <tr>
-        <td align="center">{{value.date|date:"d/m/Y"}}</td>
-        <td align="center">{{value.open|floatformat:7}}</td>
-        <td align="center ">{{value.high|floatformat:7}}</td>
-        <td align="center">{{value.low|floatformat:7}}</td>
-        <td align="center">{{value.close|floatformat:7}}</td>
-        <td align="center">{{value.adj_close|floatformat:7}}</td>
-        <td align="center">{{value.volume}}</td>
-    </tr>
-    {% endfor %}
+    <table class="table table-dark table-hover" id="market_data_table ">
+        <tr>
+            <th style="text-align: center">Date</th>
+            <th style="text-align: center">Open</th>
+            <th style="text-align: center">High</th>
+            <th style="text-align: center">Low</th>
+            <th style="text-align: center">Close</th>
+            <th style="text-align: center">Adj Close</th>
+            <th style="text-align: center">Volume</th>
+        </tr>
 
-</table>
+        {% for value in crypto_data|dictsortreversed:'date' %}
+        <tr>
+            <td align="center">{{value.date|date:"d/m/Y"}}</td>
+            <td align="center">{{value.open|floatformat:7}}</td>
+            <td align="center ">{{value.high|floatformat:7}}</td>
+            <td align="center">{{value.low|floatformat:7}}</td>
+            <td align="center">{{value.close|floatformat:7}}</td>
+            <td align="center">{{value.adj_close|floatformat:7}}</td>
+            <td align="center">{{value.volume}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
 
 <script src="static/app_crypto/script.js"></script>
 
