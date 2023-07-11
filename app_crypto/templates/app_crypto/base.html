@@ -16,6 +16,8 @@
     <script defer src="app_crypto/js/bootstrap.js">  </script>
 
 
+
+
 </head>
 
 {% load sass_tags %}
@@ -38,10 +40,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link" aria-current="page" href="/" style="color: #ffffffca">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="#">Market Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Plot</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -57,9 +62,7 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
-                        </li>
+
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -69,30 +72,47 @@
             </div>
         </nav>
 
+        <hr>
+
+        <div class="container-fluid">
+            {% block title %}
+
+            {% endblock title %}
+
+        </div>
+
+        <hr>
+
+        {% block head %}
+        {% endblock head %}
+
+
+
+        {% block content %}
+
+        {% endblock content %}
+
+
+
+        {% block footer %}
+        <div class="container-fluid">
+            <p>Copyright © 2023 candlefarm.com</p>
+        </div>
+
+        {% endblock footer %}
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+
+
     </div>
 
-    {% block title %}
-
-    {% endblock title %}
-
-    {% block head %}
-    {% endblock head %}
+    <script src="{% static 'app_crypto/script.js' %}"></script>
 
 
 
-    {% block content %}
 
-    {% endblock content %}
 
-    {% block footer %}
-    <div class="container-fluid">
-        <p>Copyright © 2023 candlefarm.com</p>
-    </div>
-
-    {% endblock footer %}
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
 
 
 </body>

@@ -1,14 +1,19 @@
 /* Modify the background color */
 $font-stack: Helvetica, sans-serif;
 $primary-color: #962ee0;
+$secondary-color: rgb(255, 255, 255);
 
 body {
     font: 100% $font-stack;
-    color: $primary-color;
+    color: $secondary-color;
     background-color: $primary-color;
 }
 
+
+
 .gradient-custom {
+
+
     /* fallback for old browsers */
     background: #6a11cb;
 
