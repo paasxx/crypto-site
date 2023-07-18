@@ -621,7 +621,7 @@ class Wtrx(models.Model):
 
 class Xrp(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=True
+        db_column="Date", blank=True, null=False, primary_key=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
