@@ -15,6 +15,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 from plotly.subplots import make_subplots
 from plotly.offline import plot
+from .yfinanceAPI import BTC
 
 
 from .models import *
@@ -43,6 +44,7 @@ def home(request):
         "currencies": currencies,
         "class_names": class_names,
     }
+    BTC()
     return render(request, "app_crypto/home.html", context)
 
 
