@@ -26,6 +26,9 @@ pathspec==0.11.1
 Pillow==9.5.0
 platformdirs==3.5.1
 plotly==5.15.0
+postgres==4.0
+psycopg2-binary==2.9.6
+psycopg2-pool==1.1
 py==1.11.0
 pyparsing==3.1.0
 python-dateutil==2.8.2

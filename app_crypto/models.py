@@ -4,8 +4,8 @@ from django.db import models
 
 
 class Ada(models.Model):
-    date = models.DateField(
-        db_column="Date", blank=True, null=False, primary_key=True
+    date = models.TextField(
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -33,7 +33,7 @@ class Ada(models.Model):
 
 class Avax(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -61,7 +61,7 @@ class Avax(models.Model):
 
 class Bnb(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -89,7 +89,7 @@ class Bnb(models.Model):
 
 class Btc(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase. This field type is a guess.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -117,7 +117,7 @@ class Btc(models.Model):
 
 class Busd(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -145,7 +145,7 @@ class Busd(models.Model):
 
 class Dai(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -173,7 +173,7 @@ class Dai(models.Model):
 
 class Doge(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -201,7 +201,7 @@ class Doge(models.Model):
 
 class Dot(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -229,7 +229,7 @@ class Dot(models.Model):
 
 class Etc(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -257,7 +257,7 @@ class Etc(models.Model):
 
 class Eth(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase. This field type is a guess.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -285,7 +285,7 @@ class Eth(models.Model):
 
 class Hex(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -313,7 +313,7 @@ class Hex(models.Model):
 
 class Leo(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -341,7 +341,7 @@ class Leo(models.Model):
 
 class Ltc(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -369,7 +369,7 @@ class Ltc(models.Model):
 
 class Matic(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -397,7 +397,7 @@ class Matic(models.Model):
 
 class Shib(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -425,7 +425,7 @@ class Shib(models.Model):
 
 class Sol(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -453,7 +453,7 @@ class Sol(models.Model):
 
 class Steth(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -481,7 +481,7 @@ class Steth(models.Model):
 
 class Trx(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -509,7 +509,7 @@ class Trx(models.Model):
 
 class Usdc(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -537,7 +537,7 @@ class Usdc(models.Model):
 
 class Usdt(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -565,7 +565,7 @@ class Usdt(models.Model):
 
 class Wbtc(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -593,7 +593,7 @@ class Wbtc(models.Model):
 
 class Wtrx(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True
@@ -621,7 +621,7 @@ class Wtrx(models.Model):
 
 class Xrp(models.Model):
     date = models.TextField(
-        db_column="Date", blank=True, null=False, primary_key=True
+        db_column="Date", blank=True, null=True
     )  # Field name made lowercase.
     open = models.FloatField(
         db_column="Open", blank=True, null=True

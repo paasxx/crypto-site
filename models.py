@@ -9,647 +9,325 @@ from django.db import models
 
 
 class Ada(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "ADA"
+        db_table = 'ADA'
 
 
 class Avax(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "AVAX"
+        db_table = 'AVAX'
 
 
 class Bnb(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "BNB"
+        db_table = 'BNB'
 
 
 class Btc(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "BTC"
+        db_table = 'BTC'
 
 
 class Busd(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "BUSD"
+        db_table = 'BUSD'
 
 
 class Dai(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "DAI"
+        db_table = 'DAI'
 
 
 class Doge(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "DOGE"
+        db_table = 'DOGE'
 
 
 class Dot(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "DOT"
+        db_table = 'DOT'
 
 
 class Etc(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "ETC"
+        db_table = 'ETC'
 
 
 class Eth(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "ETH"
+        db_table = 'ETH'
 
 
 class Hex(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "HEX"
+        db_table = 'HEX'
 
 
 class Leo(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "LEO"
+        db_table = 'LEO'
 
 
 class Ltc(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "LTC"
+        db_table = 'LTC'
 
 
 class Matic(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "MATIC"
+        db_table = 'MATIC'
 
 
 class Shib(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "SHIB"
+        db_table = 'SHIB'
 
 
 class Sol(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "SOL"
+        db_table = 'SOL'
 
 
 class Steth(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "STETH"
+        db_table = 'STETH'
 
 
 class Trx(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "TRX"
+        db_table = 'TRX'
 
 
 class Usdc(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "USDC"
+        db_table = 'USDC'
 
 
 class Usdt(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "USDT"
+        db_table = 'USDT'
 
 
 class Wbtc(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "WBTC"
+        db_table = 'WBTC'
 
 
 class Wtrx(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "WTRX"
+        db_table = 'WTRX'
 
 
 class Xrp(models.Model):
-    date = models.TextField(
-        db_column="Date", blank=True, null=True
-    )  # Field name made lowercase. This field type is a guess.
-    open = models.FloatField(
-        db_column="Open", blank=True, null=True
-    )  # Field name made lowercase.
-    high = models.FloatField(
-        db_column="High", blank=True, null=True
-    )  # Field name made lowercase.
-    low = models.FloatField(
-        db_column="Low", blank=True, null=True
-    )  # Field name made lowercase.
-    close = models.FloatField(
-        db_column="Close", blank=True, null=True
-    )  # Field name made lowercase.
-    adj_close = models.FloatField(
-        db_column="Adj Close", blank=True, null=True
-    )  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    volume = models.IntegerField(
-        db_column="Volume", blank=True, null=True
-    )  # Field name made lowercase.
+    date = models.TextField(db_column='Date', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
+    open = models.FloatField(db_column='Open', blank=True, null=True)  # Field name made lowercase.
+    high = models.FloatField(db_column='High', blank=True, null=True)  # Field name made lowercase.
+    low = models.FloatField(db_column='Low', blank=True, null=True)  # Field name made lowercase.
+    close = models.FloatField(db_column='Close', blank=True, null=True)  # Field name made lowercase.
+    adj_close = models.FloatField(db_column='Adj Close', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    volume = models.IntegerField(db_column='Volume', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
-        db_table = "XRP"
+        db_table = 'XRP'
 
 
 class AuthGroup(models.Model):
@@ -657,28 +335,28 @@ class AuthGroup(models.Model):
 
     class Meta:
         managed = False
-        db_table = "auth_group"
+        db_table = 'auth_group'
 
 
 class AuthGroupPermissions(models.Model):
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey("AuthPermission", models.DO_NOTHING)
+    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = "auth_group_permissions"
-        unique_together = (("group", "permission"),)
+        db_table = 'auth_group_permissions'
+        unique_together = (('group', 'permission'),)
 
 
 class AuthPermission(models.Model):
-    content_type = models.ForeignKey("DjangoContentType", models.DO_NOTHING)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
     codename = models.CharField(max_length=100)
     name = models.CharField(max_length=255)
 
     class Meta:
         managed = False
-        db_table = "auth_permission"
-        unique_together = (("content_type", "codename"),)
+        db_table = 'auth_permission'
+        unique_together = (('content_type', 'codename'),)
 
 
 class AuthUser(models.Model):
@@ -695,7 +373,7 @@ class AuthUser(models.Model):
 
     class Meta:
         managed = False
-        db_table = "auth_user"
+        db_table = 'auth_user'
 
 
 class AuthUserGroups(models.Model):
@@ -704,8 +382,8 @@ class AuthUserGroups(models.Model):
 
     class Meta:
         managed = False
-        db_table = "auth_user_groups"
-        unique_together = (("user", "group"),)
+        db_table = 'auth_user_groups'
+        unique_together = (('user', 'group'),)
 
 
 class AuthUserUserPermissions(models.Model):
@@ -714,8 +392,8 @@ class AuthUserUserPermissions(models.Model):
 
     class Meta:
         managed = False
-        db_table = "auth_user_user_permissions"
-        unique_together = (("user", "permission"),)
+        db_table = 'auth_user_user_permissions'
+        unique_together = (('user', 'permission'),)
 
 
 class DjangoAdminLog(models.Model):
@@ -723,15 +401,13 @@ class DjangoAdminLog(models.Model):
     object_repr = models.CharField(max_length=200)
     action_flag = models.PositiveSmallIntegerField()
     change_message = models.TextField()
-    content_type = models.ForeignKey(
-        "DjangoContentType", models.DO_NOTHING, blank=True, null=True
-    )
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
     action_time = models.DateTimeField()
 
     class Meta:
         managed = False
-        db_table = "django_admin_log"
+        db_table = 'django_admin_log'
 
 
 class DjangoContentType(models.Model):
@@ -740,8 +416,8 @@ class DjangoContentType(models.Model):
 
     class Meta:
         managed = False
-        db_table = "django_content_type"
-        unique_together = (("app_label", "model"),)
+        db_table = 'django_content_type'
+        unique_together = (('app_label', 'model'),)
 
 
 class DjangoMigrations(models.Model):
@@ -751,7 +427,7 @@ class DjangoMigrations(models.Model):
 
     class Meta:
         managed = False
-        db_table = "django_migrations"
+        db_table = 'django_migrations'
 
 
 class DjangoSession(models.Model):
@@ -761,4 +437,4 @@ class DjangoSession(models.Model):
 
     class Meta:
         managed = False
-        db_table = "django_session"
+        db_table = 'django_session'
