@@ -131,7 +131,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-# DATE_FORMAT = "dd/mm/yyyy"
+DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
 # Static files (CSS, JavaScript, Images)

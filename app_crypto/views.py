@@ -1,21 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
 from datetime import datetime
 from django.db.models import Max, Min
 from django.contrib import messages
 
 
 import pandas as pd
-
-# import yfinance as yf
-# from yahoofinancials import YahooFinancials
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.io as pio
 from plotly.subplots import make_subplots
 from plotly.offline import plot
-from .yfinanceAPI import BTC
+from .yfinanceAPI import *
 
 
 from .models import *
@@ -44,7 +40,8 @@ def home(request):
         "currencies": currencies,
         "class_names": class_names,
     }
-    BTC()
+    writeToDatabase(assets, request)
+
     return render(request, "app_crypto/home.html", context)
 
 
