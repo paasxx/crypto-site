@@ -1,0 +1,38 @@
+{% extends 'app_crypto/base.html'%}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div id="spinner-box" class="text-center mt-3">
+        <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+        <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+        </button>
+    </div>
+
+</div>
+
+
+<div class="container-fluid">
+    <div id="spinner-box-2" class="text-center mt-3">
+        <div class="spinner-border" role="status">
+
+        </div>
+    </div>
+    <div id="data-box" class="text-center mt-3">
+
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

@@ -18,7 +18,7 @@ from .models import *
 import sys
 from django.apps import apps
 from django.contrib import admin
-from django.contrib.admin.sites import AlreadyRegistered
+from django.http import JsonResponse
 
 
 table_names = [m._meta.db_table for c in apps.get_app_configs() for m in c.get_models()]
@@ -40,9 +40,20 @@ def home(request):
         "currencies": currencies,
         "class_names": class_names,
     }
-    writeToDatabase(assets, request)
+    # writeToDatabase(assets, request)
 
     return render(request, "app_crypto/home.html", context)
+
+
+def test(request):
+    return render(request, "app_crypto/spinner.html")
+
+
+def post_json(request):
+    instance = Ada.crypto_objects.all()
+    print(instance)
+    data = list(instance)
+    return JsonResponse(data, safe=False)
 
 
 def market(request, crypto):

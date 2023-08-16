@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -5,15 +7,15 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
-
     <!-- Bootstrap CSS -->
-    {% load static %}
-
     <link rel="stylesheet" type="text/css" href="{% static 'app_crypto/css/bootstrap.css' %}" />
-    <script defer src="app_crypto/js/bootstrap.js">  </script>
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="{% static 'app_crypto/style.css'%}">
+    <!-- Jquery for Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Custom JS -->
+    <script src=" {% static 'app_crypto/script.js' %}" defer></script>
+    <script src=" {% static 'app_crypto/script-spinner.js' %}" defer></script>
 
 
 
@@ -107,9 +109,10 @@
 
     </div>
 
-    <script src="{% static 'app_crypto/script.js' %}"></script>
 
+    <!-- Bootstrap JS -->
 
+    <script src="{% static 'app_crypto/js/bootstrap.bundle.js' %}">  </script>
 
 
 

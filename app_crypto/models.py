@@ -1,6 +1,15 @@
 from django.db import models
+from datetime import datetime
+
+from django.db.models.query import QuerySet
+
 
 # Create your models here.
+
+
+class AdaManager(models.Manager):
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().filter(date__gte=datetime(2023, 1, 1)).values()
 
 
 class crypto(models.Model):
@@ -34,6 +43,9 @@ class Ada(crypto):
     class Meta:
         db_table = "ADA"
         managed = True
+
+    crypto = models.Manager()
+    crypto_objects = AdaManager()
 
 
 class Avax(crypto):

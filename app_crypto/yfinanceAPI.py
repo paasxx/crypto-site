@@ -83,7 +83,7 @@ def writeToDatabase(assets, request):
     for i in models:
         name = i.__name__
         ticker = assets[name.upper()]
-        messages.warning(request, "Downloading data from Yahoo and Updating Databases")
+        # messages.warning(request, "Downloading data from Yahoo and Updating Databases")
         df = getCryptoByRangeData(ticker, "2000-01-01", "2023-08-14")
         populateTableByModel(df, i)
-        messages.warning(request, "Done")
+        # messages.warning(request, "Done")
