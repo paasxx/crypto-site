@@ -32,6 +32,11 @@ assets = {
 }
 
 
+def getModelByName(modelName):
+    model = apps.get_app_config("app_crypto").get_model(modelName)
+    return model
+
+
 def getModels():
     models = apps.get_app_config("app_crypto").get_models()
     return models

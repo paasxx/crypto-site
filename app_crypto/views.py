@@ -2,6 +2,7 @@ from django.shortcuts import render
 from datetime import datetime
 from django.db.models import Max, Min
 from django.contrib import messages
+from .forms import *
 
 
 import pandas as pd
@@ -21,18 +22,8 @@ from django.contrib import admin
 from django.http import JsonResponse
 
 
-table_names = [m._meta.db_table for c in apps.get_app_configs() for m in c.get_models()]
-
-table_class_names = [m.__name__ for c in apps.get_app_configs() for m in c.get_models()]
-
-currencies = [
-    i for i in table_names if len(i) <= 5
-]  # Selecting only names of tickers with less than 4 digits
-
-class_names = [i for i in table_class_names if len(i) <= 5]
-
-
-# Create your views here.
+currencies = getTablesNames()
+class_names = getModelsNames()
 
 
 def home(request):
@@ -41,6 +32,7 @@ def home(request):
         "class_names": class_names,
     }
     # writeToDatabase(assets, request)
+    print(currencies)
 
     return render(request, "app_crypto/home.html", context)
 
@@ -50,27 +42,31 @@ def test(request):
 
 
 def post_json(request):
-    instance = Ada.crypto_objects.all()
-    print(instance)
+    # instance = Ada.crypto_objects.all_data().order_by("date").values().first()
+    crypto_model = getModelByName("Eth")
+    instance = crypto_model.crypto_objects.between_dates(
+        datetime(2023, 1, 1), datetime(2023, 1, 10)
+    ).values()
+
+    # print(instance)
     data = list(instance)
     return JsonResponse(data, safe=False)
 
 
 def market(request, crypto):
     crypto_name = crypto
-    crypto = getattr(sys.modules[__name__], crypto)
+    crypto_model = getModelByName(crypto)
 
     sd = request.GET.get("startDate")
     ed = request.GET.get("endDate")
 
-    min_date_table_str = crypto.objects.aggregate(Min("date"))["date__min"]
-    max_date_table_str = crypto.objects.aggregate(Max("date"))["date__max"]
+    min_date_table = crypto_model.crypto_objects.first_date().date
+    max_date_table = crypto_model.crypto_objects.last_date().date
 
-    min_date_table = datetime.strptime(min_date_table_str, "%Y-%m-%d %H:%M:%S")
-    max_date_table = datetime.strptime(max_date_table_str, "%Y-%m-%d %H:%M:%S")
+    crypto_data_all = crypto_model.crypto_objects.all_data()
 
     if sd == None and ed == None or sd == "" and ed == "":
-        crypto_data = crypto.objects.all()
+        crypto_data = crypto_data_all
 
         context = {
             "currencies": currencies,
@@ -87,7 +83,7 @@ def market(request, crypto):
             messages.warning(
                 request, "End Date must be greater than Start Date, Please try again."
             )
-            crypto_data = crypto.objects.all()
+            crypto_data = crypto_data_all
 
             context = {
                 "currencies": currencies,
@@ -101,7 +97,7 @@ def market(request, crypto):
 
         else:
             if sd == None or sd == "":
-                crypto_data = crypto.objects.filter(date__lte=ed)
+                crypto_data = crypto_model.crypto_objects.lesser_or_equal_date(ed)
 
                 context = {
                     "currencies": currencies,
@@ -114,7 +110,7 @@ def market(request, crypto):
                 return render(request, "app_crypto/crypto_list.html", context)
 
             elif ed == None or ed == "":
-                crypto_data = crypto.objects.filter(date__gte=sd)
+                crypto_data = crypto_model.crypto_objects.greater_or_equal_date(sd)
 
                 context = {
                     "currencies": currencies,
@@ -129,9 +125,9 @@ def market(request, crypto):
             else:
                 start_date = datetime.strptime(sd, "%Y-%m-%d")
                 end_date = datetime.strptime(ed, "%Y-%m-%d")
-                crypto_data = crypto.objects.filter(
-                    date__range=[start_date, end_date]
-                ).distinct()
+                crypto_data = crypto_model.crypto_objects.between_dates(
+                    start_date, end_date
+                )
 
                 context = {
                     "currencies": currencies,
@@ -260,19 +256,18 @@ def plot_html(df, title):
 
 def plot(request, crypto):
     crypto_name = crypto
-    crypto = getattr(sys.modules[__name__], crypto)
+    crypto_model = getModelByName(crypto)
 
     sd = request.GET.get("startDate")
     ed = request.GET.get("endDate")
 
-    min_date_table_str = crypto.objects.aggregate(Min("date"))["date__min"]
-    max_date_table_str = crypto.objects.aggregate(Max("date"))["date__max"]
+    min_date_table = crypto_model.crypto_objects.first_date().date
+    max_date_table = crypto_model.crypto_objects.last_date().date
 
-    min_date_table = datetime.strptime(min_date_table_str, "%Y-%m-%d %H:%M:%S")
-    max_date_table = datetime.strptime(max_date_table_str, "%Y-%m-%d %H:%M:%S")
+    crypto_data_all = crypto_model.crypto_objects.all_data()
 
     if sd == None and ed == None or sd == "" and ed == "":
-        crypto_data = crypto.objects.all()
+        crypto_data = crypto_data_all
 
         df = pd.DataFrame.from_records(crypto_data.values())
 
@@ -294,7 +289,7 @@ def plot(request, crypto):
             messages.warning(
                 request, "End Date must be greater than Start Date, Please try again."
             )
-            crypto_data = crypto.objects.all()
+            crypto_data = crypto_data_all
 
             df = pd.DataFrame.from_records(crypto_data.values())
 
@@ -313,7 +308,7 @@ def plot(request, crypto):
 
         else:
             if sd == None or sd == "":
-                crypto_data = crypto.objects.filter(date__lte=ed)
+                crypto_data = crypto_model.crypto_objects.lesser_or_equal_date(ed)
 
                 df = pd.DataFrame.from_records(crypto_data.values())
 
@@ -331,7 +326,7 @@ def plot(request, crypto):
                 return render(request, "app_crypto/plot.html", context)
 
             elif ed == None or ed == "":
-                crypto_data = crypto.objects.filter(date__gte=sd)
+                crypto_data = crypto_model.crypto_objects.greater_or_equal_date(sd)
 
                 df = pd.DataFrame.from_records(crypto_data.values())
 
@@ -351,9 +346,9 @@ def plot(request, crypto):
             else:
                 start_date = datetime.strptime(sd, "%Y-%m-%d")
                 end_date = datetime.strptime(ed, "%Y-%m-%d")
-                crypto_data = crypto.objects.filter(
-                    date__range=[start_date, end_date]
-                ).distinct()
+                crypto_data = crypto_model.crypto_objects.between_dates(
+                    start_date, end_date
+                )
 
                 df = pd.DataFrame.from_records(crypto_data.values())
 

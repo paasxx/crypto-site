@@ -15,7 +15,7 @@ $.ajax({
             spinnerBox.classList.add('not-visible')
             spinnerBox2.classList.add('not-visible')
             for (const item of response) {
-                dataBox.innerHTML += `<b>${item.date}</b><p>${item.open}</p>`
+                dataBox.innerHTML += `<b>${item.open}</b><p>${item.date}</p>`
             }
 
         }, 500)
