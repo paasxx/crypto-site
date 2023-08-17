@@ -3,6 +3,7 @@ from datetime import date, timedelta, datetime
 
 from django.apps import apps
 from django.contrib import messages
+from .models import *
 
 
 assets = {
@@ -71,7 +72,7 @@ def populateTableByModel(cryptoDataframe, cryptoModel):
         vals = [df.at[i, col] for col in list(df.columns)]
 
         ##Change to use save function
-        cryptoModel.objects.create(
+        cryptoModel.crypto_objects.all_data().create(
             date=datetime.strftime(vals[0], "%Y-%m-%d"),
             open=vals[1],
             high=vals[2],
