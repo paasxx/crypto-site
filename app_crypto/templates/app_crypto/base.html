@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="{% static 'app_crypto/style.css'%}">
     <!-- Jquery for Ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Custom JS -->
-    <script src=" {% static 'app_crypto/script.js' %}" defer></script>
+    <!-- Custom JS-->
     <script src=" {% static 'app_crypto/script-spinner.js' %}" defer></script>
 
 
@@ -45,10 +44,10 @@
                             <a class="nav-link" aria-current="page" href="/" style="color: #ffffffca">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Market Data</a>
+                            <a class="nav-link" href="/market_data/Btc">Market Data</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Plot</a>
+                            <a class="nav-link" href="/plot/Btc">Plot</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -116,6 +115,10 @@
 
 
 
+
+    {% block js_scripts %}
+
+    {% endblock js_scripts %}
 
 
 </body>

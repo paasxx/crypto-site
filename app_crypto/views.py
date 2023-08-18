@@ -56,6 +56,8 @@ def market(request, crypto):
         sd = request.POST["startDate"]
         ed = request.POST["endDate"]
 
+        ## Tentar colocar essa logica em um form
+
         first_error = sd == "" or ed == ""
 
         second_error = (

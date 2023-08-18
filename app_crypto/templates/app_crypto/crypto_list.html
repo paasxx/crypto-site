@@ -1,4 +1,6 @@
 {% extends "app_crypto/base.html" %}
+{% load static %}
+
 
 
 {% block title %}
@@ -71,7 +73,8 @@
 
         <div class="col-12">
             <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
-            <button type="submit" class="btn btn-dark border-custom" id="search">Search</button>
+            <button type="submit" onclick=redirect_crypto_page() class="btn btn-dark border-custom"
+                id="search">Search</button>
         </div>
 
         <div class="col-12">
@@ -116,5 +119,8 @@
 
 
 
-
 {% endblock content %}
+
+{% block js_scripts %}
+<script src="{% static 'app_crypto/script_market.js' %}"></script>
+{% endblock js_scripts %}
