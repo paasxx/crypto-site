@@ -27,15 +27,31 @@ def test(request):
 
 
 def post_json(request):
-    # instance = Ada.crypto_objects.all_data().order_by("date").values().first()
     crypto_model = getModelByName("Eth")
-    instance = crypto_model.crypto_objects.between_dates(
-        datetime(2023, 1, 1), datetime(2023, 1, 10)
-    ).values()
+    instance = (
+        crypto_model.crypto_objects.between_dates(
+            datetime(2023, 1, 1), datetime(2023, 1, 10)
+        )
+        .order_by("-date")
+        .values()
+    )
 
     # print(instance)
     data = list(instance)
     return JsonResponse(data, safe=False)
+
+
+# def post_json(request, modelName, startDate, endDate):
+#     crypto_model = getModelByName(modelName)
+#     instance = (
+#         crypto_model.crypto_objects.between_dates(startDate, endDate)
+#         .order_by("-date")
+#         .values()
+#     )
+
+#     # print(instance)
+#     data = list(instance)
+#     return JsonResponse(data, safe=False)
 
 
 def market(request, crypto):
@@ -77,8 +93,12 @@ def market(request, crypto):
             crypto_data = crypto_data_all
             context["crypto_data"] = crypto_data
             return render(request, "app_crypto/crypto_list.html", context)
+
         else:
-            crypto_data = crypto_model.crypto_objects.between_dates(sd, ed)
+            crypto_data = list(
+                crypto_model.crypto_objects.between_dates(sd, ed).values()
+            )
+            # crypto_data = post_json(request, crypto, sd, ed)
             context["crypto_data"] = crypto_data
             return render(request, "app_crypto/crypto_list.html", context)
 

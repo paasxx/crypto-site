@@ -1,4 +1,5 @@
 {% extends 'app_crypto/base.html'%}
+{% load static %}
 
 {% block title %}
 
@@ -7,32 +8,48 @@
 {% block content %}
 
 
-<div class="container-fluid">
+<div class="spinner">
     <div id="spinner-box" class="text-center mt-3">
-        <button class="btn btn-primary" type="button" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        </button>
-        <button class="btn btn-primary" type="button" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Loading...
-        </button>
-    </div>
-
-</div>
-
-
-<div class="container-fluid">
-    <div id="spinner-box-2" class="text-center mt-3">
         <div class="spinner-border" role="status">
 
         </div>
     </div>
-    <div id="data-box" class="text-center mt-3">
+</div>
 
-    </div>
+
+
+<div class="container-fluid" style="text-align: center;">
+
+    <table class="display cell-border hover order-column row-border stripe text-center" id="market_data_table"
+        style="width:100%">
+
+        <thead>
+            <tr>
+                <th style="text-align: center">Date</th>
+                <th style="text-align: center">Open</th>
+                <th style="text-align: center">High</th>
+                <th style="text-align: center">Low</th>
+                <th style="text-align: center">Close</th>
+                <th style="text-align: center">Adj Close</th>
+                <th style="text-align: center">Volume</th>
+            </tr>
+        </thead>
+
+        <!-- JSON (Response from backend)-->
+
+
+
+
+    </table>
+
 </div>
 
 
 
 
 {% endblock content %}
+
+
+{% block js_scripts %}
+<script src=" {% static 'app_crypto/script-spinner.js' %}" defer></script>
+{% endblock js_scripts %}

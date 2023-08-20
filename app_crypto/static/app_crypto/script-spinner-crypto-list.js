@@ -1,6 +1,9 @@
+let jsondata = document.getElementById('crypto_data');
+let json = JSON.parse(jsondata.textContent)
+console.log(json);
+
 
 $("#market_data_table").hide();
-
 
 $(document).ready(function () {
 
@@ -11,23 +14,21 @@ $(document).ready(function () {
     }, 50);
 
     setTimeout(() => {
+
         $.fn.dataTable.moment('DD/MM/YYYY');
 
         var table = $('#market_data_table').DataTable({
 
-            "ajax": {
-                "url": "/json",
-                "dataSrc": "",
-                'processing': true,
-                'serverSide': true,
+            data: json,
 
-            },
-            "columns": [
+            columns: [
+
                 {
                     "data": "date",
                     render: function (data, type, row) {
                         return moment(new Date(data).toString()).format('DD/MM/YYYY');
                     }
+
                 },
                 { "data": "open" },
                 { "data": "high" },
@@ -38,7 +39,6 @@ $(document).ready(function () {
             ],
 
         });
-        table.order([0, 'desc']).draw();
 
     }, 1000);
 
@@ -53,6 +53,8 @@ $(document).ready(function () {
         $("#market_data_table").show();
 
     }, 1000);
+
+
 
 
 });

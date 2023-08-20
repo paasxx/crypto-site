@@ -1,4 +1,5 @@
 {% extends "app_crypto/base.html" %}
+{% load static %}
 
 {% block title %}
 <div class="container-fluid">
@@ -15,16 +16,13 @@
 {% block content %}
 
 
-
 <div class="container-fluid">
 
     {% if messages %}
-
     {% for message in messages %}
     <div class="alert alert-warning" role="alert">
         {{message}}
     </div>
-
     {% endfor %}
     {% endif %}
 
@@ -34,7 +32,6 @@
 
     <form class="row row-cols-lg-auto g-3 align-items-center" method="POST" action="">
         {% csrf_token %}
-
 
         <div class="col-12">
             <div class="input-group">
@@ -51,23 +48,17 @@
                 <input type="date" class="form-control" id="endDate" name="endDate" min="2009-01-03"
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
-
         </div>
 
         <div class="col-12">
 
-            <select class="form-select" id="inlineFormSelectPref">
-
+            <select class="form-select" id="inlineFormSelectPref" onChange="redirect_crypto_page();">
                 <option disabled hidden selected> -- Select Crypto --</option>
                 {% for i in currencies %}
-
                 <option value="{{i}}">{{i}}</option>
-
                 {% endfor %}
-
             </select>
         </div>
-
 
         <div class="col-12">
             <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
@@ -78,25 +69,17 @@
             <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
             <button type="reset" class="btn btn-dark border-custom" id="reset">Reset</button>
         </div>
-
-
     </form>
 
 </div>
 
-
-
-
 <hr>
-
 
 <!-- include the call to action html in this new html file -->
 {{plot_crypto|safe}}
 
-
-
-
-
-
-
 {% endblock content %}
+
+{% block js_scripts %}
+<script src="{% static 'app_crypto/script_plot.js' %}"></script>
+{% endblock js_scripts %}
