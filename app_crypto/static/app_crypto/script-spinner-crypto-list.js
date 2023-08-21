@@ -1,9 +1,9 @@
 let jsondata = document.getElementById('crypto_data');
-let json = JSON.parse(jsondata.textContent)
-console.log(json);
-
+let footer = document.getElementById('footer');
+let json = JSON.parse(jsondata.textContent);
 
 $("#market_data_table").hide();
+$("#footer").hide();
 
 $(document).ready(function () {
 
@@ -17,16 +17,22 @@ $(document).ready(function () {
 
         $.fn.dataTable.moment('DD/MM/YYYY');
 
+
+
         var table = $('#market_data_table').DataTable({
 
             data: json,
+
+            order: [[0, "desc"]],
+
 
             columns: [
 
                 {
                     "data": "date",
                     render: function (data, type, row) {
-                        return moment(new Date(data).toString()).format('DD/MM/YYYY');
+                        return moment.utc(new Date(data).toUTCString()).format('DD/MM/YYYY');
+
                     }
 
                 },
@@ -38,7 +44,19 @@ $(document).ready(function () {
                 { "data": "volume" },
             ],
 
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5',
+            ],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+
         });
+
+
+
 
     }, 1000);
 
@@ -51,6 +69,7 @@ $(document).ready(function () {
     setTimeout(() => {
 
         $("#market_data_table").show();
+        $("#footer").show();
 
     }, 1000);
 

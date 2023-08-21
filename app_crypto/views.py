@@ -17,6 +17,7 @@ def home(request):
         "currencies": currencies,
         "class_names": class_names,
     }
+
     # writeToDatabase(assets, request)
 
     return render(request, "app_crypto/home.html", context)
@@ -59,7 +60,7 @@ def market(request, crypto):
     crypto_model = getModelByName(crypto)
     min_date_table = crypto_model.crypto_objects.first_date().date
     max_date_table = crypto_model.crypto_objects.last_date().date
-    crypto_data_all = crypto_model.crypto_objects.all_data()
+    crypto_data_all = list(crypto_model.crypto_objects.all_data().values())
 
     context = {
         "currencies": currencies,
@@ -96,9 +97,12 @@ def market(request, crypto):
 
         else:
             crypto_data = list(
-                crypto_model.crypto_objects.between_dates(sd, ed).values()
+                crypto_model.crypto_objects.between_dates(
+                    datetime.strptime(sd, "%Y-%m-%d"),
+                    datetime.strptime(ed, "%Y-%m-%d"),
+                ).values()
             )
-            # crypto_data = post_json(request, crypto, sd, ed)
+
             context["crypto_data"] = crypto_data
             return render(request, "app_crypto/crypto_list.html", context)
 

@@ -73,7 +73,8 @@ def populateTableByModel(cryptoDataframe, cryptoModel):
 
         ##Change to use save function
         cryptoModel.crypto_objects.all_data().create(
-            date=datetime.strftime(vals[0], "%Y-%m-%d"),
+            date=vals[0],
+            # date=datetime.strftime(vals[0], "%Y-%m-%d"),
             open=vals[1],
             high=vals[2],
             low=vals[3],
