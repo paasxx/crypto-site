@@ -14,3 +14,16 @@ body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+div.dt-button-collection {
+    color: rgb(255, 255, 255);
+    background-color: rgb(34, 34, 34);
+
+
+}
+
+div.dt-button-info {
+    color: rgb(255, 255, 255);
+    background-color: rgb(34, 34, 34);
+
+}

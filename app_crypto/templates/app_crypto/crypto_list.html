@@ -1,6 +1,6 @@
 {% extends "app_crypto/base.html" %}
 {% load static %}
-
+{% load sass_tags %}
 
 
 {% block title %}
@@ -97,11 +97,10 @@
 
 <div class="container-fluid" style="text-align: center;">
 
-    <table class="table table-striped table-bordered table-dark hovertext-center" id="market_data_table"
+    <table class="table table-striped table-bordered table-dark hover text-center" id="market_data_table"
         style="width:100%">
         <thead>
             <tr>
-
                 <th style="text-align: center">Date</th>
                 <th style="text-align: center">Open</th>
                 <th style="text-align: center">High</th>
@@ -111,6 +110,7 @@
                 <th style="text-align: center">Volume</th>
             </tr>
         </thead>
+
 
 
     </table>

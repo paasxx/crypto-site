@@ -18,7 +18,6 @@ $(document).ready(function () {
         $.fn.dataTable.moment('DD/MM/YYYY');
 
 
-
         var table = $('#market_data_table').DataTable({
 
             data: json,
@@ -43,16 +42,23 @@ $(document).ready(function () {
                 { "data": "adj_close" },
                 { "data": "volume" },
             ],
-
             dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
             buttons: [
+                {
+                    extend: 'colvis',
+                    collectionTitle: 'Column visibility control'
+
+                },
+                'pageLength',
                 'copyHtml5',
                 'excelHtml5',
                 'csvHtml5',
-                'pdfHtml5',
+                'pdfHtml5'
             ],
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
-
         });
 
 
