@@ -17,8 +17,6 @@ def home(request):
         "class_names": class_names,
     }
 
-    updateDatabase(assets, request)
-
     return render(request, "app_crypto/home.html", context)
 
 
@@ -149,3 +147,11 @@ def update_database(request):
     }
 
     return render(request, "app_crypto/update_database.html", context)
+
+
+def update(request):
+    updateDatabase(assets, request)
+    return render(
+        request,
+        "app_crypto/update_database.html",
+    )
