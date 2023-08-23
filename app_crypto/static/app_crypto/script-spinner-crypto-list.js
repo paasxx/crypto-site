@@ -35,13 +35,62 @@ $(document).ready(function () {
                     }
 
                 },
-                { "data": "open" },
-                { "data": "high" },
-                { "data": "low" },
-                { "data": "close" },
-                { "data": "adj_close" },
-                { "data": "volume" },
+                {
+                    "data": "open", render: function (data, type) {
+                        if (data < 10) {
+                            return $('#market_data_table').DataTable.render.number(',', '.', 15, '').display(data)
+                        }
+                        else { return $('#market_data_table').DataTable.render.number(',', '.', 2, '').display(data) }
+
+                    }
+                },
+                {
+                    "data": "high", render: function (data, type) {
+                        if (data < 10) {
+                            return $('#market_data_table').DataTable.render.number(',', '.', 15, '').display(data)
+                        }
+                        else { return $('#market_data_table').DataTable.render.number(',', '.', 2, '').display(data) }
+
+                    }
+                },
+                {
+                    "data": "low", render: function (data, type) {
+                        if (data < 10) {
+                            return $('#market_data_table').DataTable.render.number(',', '.', 15, '').display(data)
+                        }
+                        else { return $('#market_data_table').DataTable.render.number(',', '.', 2, '').display(data) }
+
+                    }
+                },
+                {
+                    "data": "close", render: function (data, type) {
+                        if (data < 10) {
+                            return $('#market_data_table').DataTable.render.number(',', '.', 15, '').display(data)
+                        }
+                        else { return $('#market_data_table').DataTable.render.number(',', '.', 2, '').display(data) }
+
+                    }
+                },
+                {
+                    "data": "adj_close", render: function (data, type) {
+                        if (data < 10) {
+                            return $('#market_data_table').DataTable.render.number(',', '.', 15, '').display(data)
+                        }
+                        else { return $('#market_data_table').DataTable.render.number(',', '.', 2, '').display(data) }
+
+                    }
+                },
+                {
+                    "data": "volume", render: function (data, type) {
+                        if (data < 10) {
+                            return $('#market_data_table').DataTable.render.number(',', '.', 15, '').display(data)
+                        }
+                        else { return $('#market_data_table').DataTable.render.number(',', '.', 2, '').display(data) }
+
+                    }
+                },
             ],
+
             dom: 'Bfrtip',
             lengthMenu: [
                 [10, 25, 50, -1],
@@ -64,7 +113,7 @@ $(document).ready(function () {
 
 
 
-    }, 1000);
+    }, 800);
 
     setTimeout(() => {
 
@@ -77,7 +126,7 @@ $(document).ready(function () {
         $("#market_data_table").show();
         $("#footer").show();
 
-    }, 1000);
+    }, 800);
 
 
 

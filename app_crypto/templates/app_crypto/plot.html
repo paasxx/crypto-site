@@ -75,6 +75,16 @@
 
 <hr>
 
+
+<!-- Spinner -->
+<div class="spinner">
+    <div id="spinner-box" class="text-center mt-3">
+        <div class="spinner-border" role="status">
+
+        </div>
+    </div>
+</div>
+
 <!-- include the call to action html in this new html file -->
 {{plot_crypto|safe}}
 
@@ -82,4 +92,5 @@
 
 {% block js_scripts %}
 <script src="{% static 'app_crypto/script_plot.js' %}"></script>
+<script src="{% static 'app_crypto/script-spinner-plot.js' %}"></script>
 {% endblock js_scripts %}

@@ -5,7 +5,6 @@ from .forms import *
 from .yfinanceAPI import *
 from .plots import *
 from .models import *
-from django.http import JsonResponse
 
 
 currencies = getTablesNames()
@@ -18,41 +17,9 @@ def home(request):
         "class_names": class_names,
     }
 
-    # writeToDatabase(assets, request)
+    updateDatabase(assets, request)
 
     return render(request, "app_crypto/home.html", context)
-
-
-def test(request):
-    return render(request, "app_crypto/spinner.html")
-
-
-def post_json(request):
-    crypto_model = getModelByName("Eth")
-    instance = (
-        crypto_model.crypto_objects.between_dates(
-            datetime(2023, 1, 1), datetime(2023, 1, 10)
-        )
-        .order_by("-date")
-        .values()
-    )
-
-    # print(instance)
-    data = list(instance)
-    return JsonResponse(data, safe=False)
-
-
-# def post_json(request, modelName, startDate, endDate):
-#     crypto_model = getModelByName(modelName)
-#     instance = (
-#         crypto_model.crypto_objects.between_dates(startDate, endDate)
-#         .order_by("-date")
-#         .values()
-#     )
-
-#     # print(instance)
-#     data = list(instance)
-#     return JsonResponse(data, safe=False)
 
 
 def market(request, crypto):
@@ -164,3 +131,21 @@ def plot(request, crypto):
         plot_crypto = plot_html(df, crypto_name)
         context["plot_crypto"] = plot_crypto
         return render(request, "app_crypto/plot.html", context)
+
+
+def update_database(request):
+    crypto_models = getModels()
+    crypto = []
+    last_db_dates = []
+
+    for i in crypto_models:
+        crypto.append(i.__name__)
+        last_db_dates.append(i.crypto_objects.last_date().date)
+
+    data = dict(zip(crypto, last_db_dates))
+
+    context = {
+        "data": data,
+    }
+
+    return render(request, "app_crypto/update_database.html", context)

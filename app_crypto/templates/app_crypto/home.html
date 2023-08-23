@@ -57,16 +57,17 @@
 
                 </div>
                 <div class="container-fluid">
-                    {% if messages %}
+                    <div class="container-fluid">
 
-                    {% for message in messages %}
-                    <div class="alert alert-warning" role="alert">
-                        {{message}}
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
                     </div>
-
-                    {% endfor %}
-                    {% endif %}
-
                 </div>
 
 
