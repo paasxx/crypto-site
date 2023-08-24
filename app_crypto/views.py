@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .yfinanceAPI import *
 from .plots import *
@@ -11,15 +14,61 @@ currencies = getTablesNames()
 class_names = getModelsNames()
 
 
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+    else:
+        if request.method == "POST":
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("home")
+            else:
+                messages.info(request, "Username OR password is incorrect!")
+
+        context = {}
+        return render(request, "app_crypto/login.html", context)
+
+
+@login_required(login_url="login")
+def logoutUser(request):
+    logout(request)
+    return redirect("login")
+
+
+def registerPage(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+    else:
+        form = CreateUserForm()
+
+        if request.method == "POST":
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get("username")
+                messages.success(request, "Account was created for " + user)
+                return redirect("login")
+
+        context = {"form": form}
+        return render(request, "app_crypto/register.html", context)
+
+
+@login_required(login_url="login")
 def home(request):
     context = {
         "currencies": currencies,
         "class_names": class_names,
     }
+    # writeToDatabase(assets, request)
 
     return render(request, "app_crypto/home.html", context)
 
 
+@login_required(login_url="login")
 def market(request, crypto):
     crypto_name = crypto
     crypto_model = getModelByName(crypto)
@@ -77,6 +126,7 @@ def market(request, crypto):
         return render(request, "app_crypto/crypto_list.html", context)
 
 
+@login_required(login_url="login")
 def plot(request, crypto):
     crypto_name = crypto
     crypto_model = getModelByName(crypto)
@@ -131,16 +181,22 @@ def plot(request, crypto):
         return render(request, "app_crypto/plot.html", context)
 
 
+@login_required(login_url="login")
 def update_database(request):
     crypto_models = getModels()
     crypto = []
     last_db_dates = []
+    first_db_dates = []
 
     for i in crypto_models:
         crypto.append(i.__name__)
         last_db_dates.append(i.crypto_objects.last_date().date)
+        first_db_dates.append(i.crypto_objects.first_date().date)
 
-    data = dict(zip(crypto, last_db_dates))
+    data = {}
+
+    for i in range(len(crypto)):
+        data[crypto[i]] = [first_db_dates[i], last_db_dates[i]]
 
     context = {
         "data": data,
@@ -149,9 +205,7 @@ def update_database(request):
     return render(request, "app_crypto/update_database.html", context)
 
 
+@login_required(login_url="login")
 def update(request):
     updateDatabase(assets, request)
-    return render(
-        request,
-        "app_crypto/update_database.html",
-    )
+    return redirect("update_database")

@@ -3,7 +3,21 @@
 
 {% block title %}
 <div class="container-fluid">
-    <h3>Update Database</h3>
+
+    <div class="row">
+        <div class="col">
+            <h3>Update Database</h3>
+        </div>
+        <div class="col" style="text-align: right;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark border-custom" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                Update all databases
+            </button>
+        </div>
+
+    </div>
+
 </div>
 
 {% endblock title %}
@@ -16,19 +30,24 @@
 {% block content %}
 
 
-<div class="container-fluid">
+
+<div class="container-fluid w-50" id="teste">
 
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-        <li {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>{{ message }}</li>
+        <li {% if message.tags %} class="alert {{ message.tags }} alert-dismissible fade show" {% endif %}>{{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </li>
+
         {% endfor %}
     </ul>
+
     {% endif %}
 
 </div>
 
-<!-- Spinner
+<!-- Spinner -->
 
 <div class="spinner">
     <div id="spinner-box" class="text-center mt-3">
@@ -36,8 +55,7 @@
 
         </div>
     </div>
-</div> -->
-
+</div>
 
 
 
@@ -45,11 +63,6 @@
 <div class="container-fluid" style="text-align: center;">
 
     <div style="text-align: right;">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-dark border-custom" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop">
-            Update all databases
-        </button>
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -78,16 +91,21 @@
         <thead>
             <tr>
                 <th style="text-align: center">Crypto</th>
+                <th style="text-align: center">First Date Database</th>
                 <th style="text-align: center">Last Date Database</th>
 
             </tr>
         </thead>
         <tbody>
 
-            {% for key,value in data.items %}
+            {% for i,j in data.items %}
             <tr>
-                <td>{{key|upper}}</td>
-                <td>{{value}}</td>
+                <td>{{i|upper}}</td>
+
+                {% for k in j %}
+                <td>{{k| date:"d/m/Y"}}</td>
+                {% endfor %}
+
 
             </tr>
 

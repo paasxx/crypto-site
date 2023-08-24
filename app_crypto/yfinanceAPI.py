@@ -102,32 +102,28 @@ def updateDatabase(assets, request):
     for i in models:
         name = i.__name__
         last_date_db = i.crypto_objects.last_date().date
+        date_to_be_updated = last_date_db + timedelta(days=1)
         ticker = assets[name.upper()]
-        messages.info(
-            request, "Downloading data from Yahoo and Updating " + name + " database!"
-        )
+        # messages.info(
+        #     request, "Downloading data from Yahoo and Updating " + name + " database!"
+        # )
         #### Getting a dataframe 5 day behind today to assure to get last date available! ####
-        df = getCryptoByRangeData(
-            ticker, date.today() + timedelta(days=-5), date.today()
-        )
-        last_date_yahoo = sorted(list(df.Date), reverse=True)[0].date()
 
-        messages.success(request, "Downloaded!")
+        # messages.success(request, "Downloaded!")
 
-        if last_date_yahoo > last_date_db:
-            populateTableByModel(df, i)
-            messages.warning(
-                request,
-                "The Database "
-                + name
-                + " is out of date! Updated to: "
-                + str(last_date_yahoo),
-            )
-        else:
-            messages.success(
-                request,
-                "The Database "
-                + name
-                + " is up to date! Last date available: "
-                + str(last_date_db),
-            )
+        try:
+            df = getCryptoByRangeData(ticker, date_to_be_updated, date.today())
+            last_date_yahoo = sorted(list(df.Date), reverse=True)[0].date()
+
+            if last_date_yahoo > last_date_db:
+                populateTableByModel(df, i)
+                messages.warning(
+                    request,
+                    "The Database "
+                    + name
+                    + " is out of date! Updated to: "
+                    + str(last_date_yahoo),
+                )
+
+        except:
+            messages.success(request, name.upper() + " is up to date!")
