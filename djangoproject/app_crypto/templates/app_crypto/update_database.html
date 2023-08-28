@@ -1,0 +1,132 @@
+{% extends "app_crypto/base.html" %}
+{% load static %}
+
+{% block title %}
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+            <h3>Update Database</h3>
+        </div>
+        <div class="col" style="text-align: right;">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark border-custom" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                Update all databases
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock title %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<div class="container-fluid w-50" id="teste">
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="alert {{ message.tags }} alert-dismissible fade show" {% endif %}>{{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </li>
+
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
+</div>
+
+<!-- Spinner -->
+
+<div class="spinner">
+    <div id="spinner-box" class="text-center mt-3">
+        <div class="spinner-border" role="status">
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container-fluid" style="text-align: center;">
+
+    <div style="text-align: right;">
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="staticBackdropLabel">Update Databases</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark border-custom" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-dark border-custom"
+                            onClick="redirect_update_database();">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered table-dark hover text-center" id="market_data_table"
+        style="width:100%">
+        <thead>
+            <tr>
+                <th style="text-align: center">Crypto</th>
+                <th style="text-align: center">First Date Database</th>
+                <th style="text-align: center">Last Date Database</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for i,j in data.items %}
+            <tr>
+                <td>{{i|upper}}</td>
+
+                {% for k in j %}
+                <td>{{k| date:"d/m/Y"}}</td>
+                {% endfor %}
+
+
+            </tr>
+
+            {% endfor %}
+
+
+        </tbody>
+
+
+
+    </table>
+
+</div>
+
+
+
+
+
+
+{% endblock content %}
+
+{% block js_scripts %}
+<script src=" {% static 'app_crypto/script-update-database.js' %}" defer></script>
+{% endblock js_scripts %}
