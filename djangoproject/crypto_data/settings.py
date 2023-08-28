@@ -14,9 +14,6 @@ from pathlib import Path
 import os
 
 import mimetypes
-<<<<<<< Updated upstream:crypto_data/settings.py
-import plotly
-=======
 from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
@@ -26,7 +23,6 @@ MESSAGE_TAGS = {
     messages.WARNING: "alert-warning",
     messages.ERROR: "alert-danger",
 }
->>>>>>> Stashed changes:djangoproject/crypto_data/settings.py
 
 mimetypes.add_type("text/css", ".css", True)
 
@@ -95,13 +91,6 @@ WSGI_APPLICATION = "crypto_data.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-<<<<<<< Updated upstream:crypto_data/settings.py
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        # "NAME": BASE_DIR / "db.sqlite3",
-        "NAME": BASE_DIR / "crypto_real",
-=======
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
@@ -119,7 +108,6 @@ DATABASES = {
         "PASSWORD": os.getenv("POSTGRES_PASSWORD", "change-me"),
         "HOST": os.getenv("POSTGRES_HOST", "change-me"),
         "PORT": os.getenv("POSTGRES_PORT", "change-me"),
->>>>>>> Stashed changes:djangoproject/crypto_data/settings.py
     }
 }
 
@@ -173,10 +161,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-<<<<<<< Updated upstream:crypto_data/settings.py
-STATICFILES_DIRS = ()
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-=======
 # STATICFILES_DIRS = [BASE_DIR / "static"]
 # /data/web/static
 STATIC_ROOT = DATA_DIR / "static"
@@ -185,7 +169,6 @@ MEDIA_URL = "/media/"
 # /data/web/media
 MEDIA_ROOT = DATA_DIR / "media"
 
->>>>>>> Stashed changes:djangoproject/crypto_data/settings.py
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
