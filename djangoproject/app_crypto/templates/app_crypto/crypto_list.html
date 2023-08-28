@@ -1,4 +1,6 @@
 {% extends "app_crypto/base.html" %}
+{% load static %}
+{% load sass_tags %}
 
 
 {% block title %}
@@ -8,17 +10,12 @@
 
 {% endblock title %}
 
-
 {% block head %}
+
 
 {% endblock head %}
 
-
 {% block content %}
-
-
-
-
 
 
 <div class="container-fluid">
@@ -37,14 +34,12 @@
 
 <div class="container-fluid">
 
-    <form class="row row-cols-lg-auto g-3 align-items-center" method="get" action="">
-
-
+    <form class="row row-cols-lg-auto g-3 align-items-center" method="POST" action="">
+        {% csrf_token %}
 
         <div class="col-12">
             <div class="input-group">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Start Date (Minimum:
-                    {{min_date_table|date:'Y-m-d'}})</span>
+                <span class="input-group-text" id="inputGroup-sizing-sm">Start Date</span>
                 <input type="date" class="form-control" id="startDate" name="startDate" min="2009-01-03"
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
@@ -61,27 +56,15 @@
 
         <div class="col-12">
 
-            <select class="form-select" id="inlineFormSelectPref">
-
+            <select class="form-select" id="inlineFormSelectPref" onChange="redirect_crypto_page();">
                 <option disabled hidden selected> -- Select Crypto --</option>
                 {% for i in currencies %}
-
                 <option value="{{i}}">{{i}}</option>
-
                 {% endfor %}
 
-
             </select>
-            <div style="text-align:left">
-
-                <a href="" id="teste">
-                    Select Crypto
-                </a>
-
-            </div>
 
         </div>
-
 
         <div class="col-12">
             <label class="visually-hidden" for="btn btn-outline-primary">Preference</label>
@@ -93,44 +76,41 @@
             <button type="reset" class="btn btn-dark border-custom" id="reset">Reset</button>
         </div>
 
-
-
     </form>
-
-
-
-
 
 </div>
 
-
-
 <hr>
 
-<div class="container-fluid">
+<div class="spinner">
+    <div id="spinner-box" class="text-center mt-3">
+        <div class="spinner-border" role="status">
 
-    <table class="table table-dark table-hover" id="market_data_table ">
-        <tr>
-            <th style="text-align: center">Date</th>
-            <th style="text-align: center">Open</th>
-            <th style="text-align: center">High</th>
-            <th style="text-align: center">Low</th>
-            <th style="text-align: center">Close</th>
-            <th style="text-align: center">Adj Close</th>
-            <th style="text-align: center">Volume</th>
-        </tr>
+        </div>
+    </div>
+</div>
 
-        {% for value in crypto_data|dictsortreversed:'date' %}
-        <tr>
-            <td align="center">{{value.date|date:"d/m/Y"}}</td>
-            <td align="center">{{value.open|floatformat:7}}</td>
-            <td align="center ">{{value.high|floatformat:7}}</td>
-            <td align="center">{{value.low|floatformat:7}}</td>
-            <td align="center">{{value.close|floatformat:7}}</td>
-            <td align="center">{{value.adj_close|floatformat:7}}</td>
-            <td align="center">{{value.volume}}</td>
-        </tr>
-        {% endfor %}
+<!-- Getting data from render context and passing to javascript -->
+{{crypto_data|json_script:"crypto_data"}}
+<!--  -->
+
+<div class="container-fluid" style="text-align: center;">
+
+    <table class="table table-striped table-bordered table-dark hover text-center" id="market_data_table"
+        style="width:100%">
+        <thead>
+            <tr>
+                <th style="text-align: center">Date</th>
+                <th style="text-align: center">Open</th>
+                <th style="text-align: center">High</th>
+                <th style="text-align: center">Low</th>
+                <th style="text-align: center">Close</th>
+                <th style="text-align: center">Adj Close</th>
+                <th style="text-align: center">Volume</th>
+            </tr>
+        </thead>
+
+
 
     </table>
 
@@ -138,5 +118,9 @@
 
 
 
-
 {% endblock content %}
+
+{% block js_scripts %}
+<script src="{% static 'app_crypto/script_market.js' %}"></script>
+<script src=" {% static 'app_crypto/script-spinner-crypto-list.js' %}" defer></script>
+{% endblock js_scripts %}
