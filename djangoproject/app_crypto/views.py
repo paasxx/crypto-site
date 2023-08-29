@@ -63,6 +63,7 @@ def home(request):
         "currencies": currencies,
         "class_names": class_names,
     }
+
     # writeToDatabase(assets, request)
 
     return render(request, "app_crypto/home.html", context)
