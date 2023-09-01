@@ -65,6 +65,7 @@ def home(request):
     }
 
     # writeToDatabase(assets, request)
+    # print("Done")
 
     return render(request, "app_crypto/home.html", context)
 

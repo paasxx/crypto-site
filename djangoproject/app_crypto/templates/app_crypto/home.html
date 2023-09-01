@@ -20,66 +20,68 @@
 
 <div class="container-fluid">
 
-    <table class="table table-dark">
+    <table class="table table-striped table-dark">
         <thead>
             <tr>
+
                 <th scope="col">Currency</th>
+                <th scope="col">Price</th>
+                <th scope="col">1h %</th>
+                <th scope="col">24h %</th>
+                <th scope="col">7d %</th>
                 <th scope="col">Market Data</th>
                 <th scope="col">Plot</th>
 
             </tr>
         </thead>
+
         <tbody>
+
+
+            {% for i in currencies %}
             <tr>
-                <div class="container" style="text-align: center;">
-                    <td align="left">
-                        <select>
-                            <option disabled hidden selected> -- Select Crypto --</option>
-                            {% for i in currencies %}
-                            <option value="{{i}}">{{i}}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                    <td>
-                        <div style="text-align:left">
-                            <a href="" id="market_data">
-                                Select Crypto
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div style="text-align:left">
-                            <a href="" id="plot">
-                                Plot
-                            </a>
-                        </div>
-                    </td>
-
-                </div>
-
-                <div class="container-fluid">
-
-                    {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <li {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-
-                </div>
-
-
-
-
-
-
+                <td align="left">
+                    {% with 'app_crypto/images/crypto_images/'|add:i|add:'.png' as image_static %}
+                    <img src="{% static image_static %}" alt="Logo" width="30" height="30">
+                    {% endwith %}
+                    {{i}}
+                </td>
+                <td>*</td>
+                <td>*</td>
+                <td>*</td>
+                <td>*</td>
+                <td>
+                    <div style="text-align:left">
+                        <a href="market_data/{{i}}" id="market_data">
+                            {{i}}
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div style="text-align:left">
+                        <a href="plot/{{i}}" id="plot">
+                            {{i}}
+                        </a>
+                    </div>
+                </td>
             </tr>
 
+            {% endfor %}
+
+
+            <div class="container-fluid">
+
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="alert {{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+            </div>
 
         </tbody>
-
-
     </table>
 
 </div>
@@ -88,5 +90,5 @@
 
 
 {% block js_scripts %}
-<script src=" {% static 'app_crypto/script.js' %}" defer></script>
+<!-- <script src=" {% static 'app_crypto/script.js' %}" defer></script> -->
 {% endblock %}
