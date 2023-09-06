@@ -11,4 +11,5 @@ urlpatterns = [
     path("plot/<crypto>", views.plot, name="plot"),
     path("update_database/", views.update_database, name="update_database"),
     path("update/", views.update, name="update"),
+    path("home_table/", views.home_table_update, name="home_table"),
 ]

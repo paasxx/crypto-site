@@ -127,3 +127,81 @@ def updateDatabase(assets, request):
 
         except:
             messages.success(request, name.upper() + " is up to date!")
+
+
+def home_table(assets):
+    models = getModels()
+
+    dicts = []
+    keys = range(7)
+    titles = [
+        "name",
+        "lastPrice",
+        "marketCap",
+        "volume24h",
+        "var_1h",
+        "var_1d",
+        "var_7d",
+    ]
+
+    for i in models:
+        name = i.__name__
+        ticker = assets[name.upper()]
+        yahoo_data = yf.Ticker(ticker)
+
+        shortName = yahoo_data.info["shortName"]
+        lastPrice = yahoo_data.history(interval="1m", period="1d")["Close"][-1]
+        mktCap = yahoo_data.info["marketCap"]
+        vol24h = yahoo_data.info["volume24Hr"]
+        lastMomentAvailable = yahoo_data.history(interval="1m", period="1d").index[-1]
+        oneHourAgo = lastMomentAvailable + timedelta(hours=-1)
+        oneDayAgo = lastMomentAvailable + timedelta(days=-1)
+        oneWeekAgo = lastMomentAvailable + timedelta(days=-7)
+
+        try:
+            hist = yahoo_data.history(
+                interval="1m", start=oneHourAgo, end=lastMomentAvailable
+            )
+            hist_24h = yahoo_data.history(
+                interval="5m", start=oneDayAgo, end=lastMomentAvailable
+            )
+            hist_7d = yahoo_data.history(
+                interval="5m", start=oneWeekAgo, end=lastMomentAvailable
+            )
+
+            var_1h = round(
+                ((hist["Close"][-1] - hist["Close"][0]) / hist["Close"][0]) * 100, 2
+            )
+            var_1d = round(
+                ((hist_24h["Close"][-1] - hist_24h["Close"][0]) / hist_24h["Close"][0])
+                * 100,
+                2,
+            )
+            var_7d = round(
+                ((hist_7d["Close"][-1] - hist_7d["Close"][0]) / hist_7d["Close"][0])
+                * 100,
+                2,
+            )
+
+            values = [shortName, lastPrice, mktCap, vol24h, var_1h, var_1d, var_7d]
+            data = {}
+
+            for i in keys:
+                data[titles[i]] = values[i]
+
+            data["ticker"] = name.upper()
+
+            dicts.append(data)
+
+        except:
+            values = [0, 0, 0, 0, 0, 0, 0]
+            data = {}
+
+            for i in keys:
+                data[titles[i]] = values[i]
+
+            data["ticker"] = name.upper()
+
+            dicts.append(data)
+
+    return dicts

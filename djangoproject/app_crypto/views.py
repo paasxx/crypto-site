@@ -8,6 +8,7 @@ from .forms import *
 from .yfinanceAPI import *
 from .plots import *
 from .models import *
+from django.http import JsonResponse
 
 
 currencies = getTablesNames()
@@ -211,3 +212,8 @@ def update_database(request):
 def update(request):
     updateDatabase(assets, request)
     return redirect("update_database")
+
+
+@login_required(login_url="login")
+def home_table_update(request):
+    return JsonResponse(home_table(assets), safe=False)
