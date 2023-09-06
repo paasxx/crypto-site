@@ -29,10 +29,7 @@ $(document).ready(function () {
             "columns": [
                 {
                     "data": "ticker", render: function (data, type) {
-                        return $('#market_data_table').html(`{% with 'app_crypto/images/crypto_images/'|add:${data.toUpperCase()}|add:'.png' as image_static %}
-                        <img src="{% static image_static %}" alt="Logo" width="30" height="30">
-                        {% endwith %}
-                        ${data}`)
+                        return `<img src="{% static 'app_crypto/images/crypto_images/${data.toUpperCase()}.png' %}" alt="Logo" width="30" height="30">${data}`
                     }
                 },
 

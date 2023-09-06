@@ -194,7 +194,7 @@ def home_table(assets):
             dicts.append(data)
 
         except:
-            values = [0, 0, 0, 0, 0, 0, 0]
+            values = ["*", "*", "*", "*", "*", "*", "*"]
             data = {}
 
             for i in keys:
