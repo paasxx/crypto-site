@@ -4,7 +4,19 @@ from datetime import date, timedelta, datetime
 from django.apps import apps
 from django.contrib import messages
 from .models import *
+import threading
+import concurrent.futures
 
+models_names = {
+    "BTC",
+    "ETH",
+    "XRP",
+    "ADA",
+    "SOL",
+    "DOGE",
+    "DOT",
+    "MATIC",
+}
 
 assets = {
     "BTC": "BTC-USD",
@@ -131,8 +143,6 @@ def updateDatabase(assets, request):
 
 def home_table(assets):
     models = getModels()
-
-    dicts = []
     keys = range(7)
     titles = [
         "name",
@@ -144,46 +154,47 @@ def home_table(assets):
         "var_7d",
     ]
 
-    for i in models:
-        name = i.__name__
+    def dataPerCrypto(cryptoModel):
+        name = cryptoModel
         ticker = assets[name.upper()]
         yahoo_data = yf.Ticker(ticker)
 
         shortName = yahoo_data.info["shortName"]
-        lastPrice = yahoo_data.history(interval="1m", period="1d")["Close"][-1]
-        mktCap = yahoo_data.info["marketCap"]
-        vol24h = yahoo_data.info["volume24Hr"]
         lastMomentAvailable = yahoo_data.history(interval="1m", period="1d").index[-1]
         oneHourAgo = lastMomentAvailable + timedelta(hours=-1)
         oneDayAgo = lastMomentAvailable + timedelta(days=-1)
         oneWeekAgo = lastMomentAvailable + timedelta(days=-7)
+        mktCap = yahoo_data.info["marketCap"]
+        vol24h = yahoo_data.info["volume24Hr"]
+
+        def download_yf(moment):
+            return yahoo_data.history(
+                interval="1m", start=moment, end=moment + timedelta(minutes=1)
+            )["Close"][0]
 
         try:
-            hist = yahoo_data.history(
-                interval="1m", start=oneHourAgo, end=lastMomentAvailable
-            )
-            hist_24h = yahoo_data.history(
-                interval="5m", start=oneDayAgo, end=lastMomentAvailable
-            )
-            hist_7d = yahoo_data.history(
-                interval="5m", start=oneWeekAgo, end=lastMomentAvailable
-            )
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                t1 = executor.submit(download_yf, oneHourAgo)
+                t2 = executor.submit(download_yf, oneDayAgo)
+                t3 = executor.submit(download_yf, oneWeekAgo)
+                t4 = executor.submit(download_yf, lastMomentAvailable)
 
-            var_1h = round(
-                ((hist["Close"][-1] - hist["Close"][0]) / hist["Close"][0]) * 100, 2
-            )
+                hourAgoData = t1.result()
+                dayAgoData = t2.result()
+                weekAgoData = t3.result()
+                minuteAgoData = t4.result()
+
+            var_1h = round(((minuteAgoData - hourAgoData) / hourAgoData) * 100, 2)
             var_1d = round(
-                ((hist_24h["Close"][-1] - hist_24h["Close"][0]) / hist_24h["Close"][0])
-                * 100,
+                ((minuteAgoData - dayAgoData) / dayAgoData) * 100,
                 2,
             )
             var_7d = round(
-                ((hist_7d["Close"][-1] - hist_7d["Close"][0]) / hist_7d["Close"][0])
-                * 100,
+                ((minuteAgoData - weekAgoData) / weekAgoData) * 100,
                 2,
             )
 
-            values = [shortName, lastPrice, mktCap, vol24h, var_1h, var_1d, var_7d]
+            values = [shortName, minuteAgoData, mktCap, vol24h, var_1h, var_1d, var_7d]
             data = {}
 
             for i in keys:
@@ -191,7 +202,7 @@ def home_table(assets):
 
             data["ticker"] = name.upper()
 
-            dicts.append(data)
+            return data
 
         except:
             values = ["*", "*", "*", "*", "*", "*", "*"]
@@ -202,6 +213,12 @@ def home_table(assets):
 
             data["ticker"] = name.upper()
 
-            dicts.append(data)
+            return data
+
+    dicts = []
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = [executor.submit(dataPerCrypto, i) for i in models_names]
+        [dicts.append(f.result()) for f in futures]
 
     return dicts

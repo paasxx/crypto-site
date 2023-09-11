@@ -20,7 +20,7 @@ $(document).ready(function () {
                 "url": "/home_table",
                 "dataSrc": "",
                 "dataType": "json",
-
+                "className": "text-center",
                 'processing': true,
                 'serverSide': true,
 
@@ -28,12 +28,14 @@ $(document).ready(function () {
             },
             "columns": [
                 {
-                    "data": "ticker", render: function (data, type) {
-                        return `<img src="{% static 'app_crypto/images/crypto_images/${data.toUpperCase()}.png' %}" alt="Logo" width="30" height="30">${data}`
-                    }
+                    "data": "ticker"
                 },
 
-                { "data": "name" },
+                {
+                    "data": "name", render: function (data, type, row) {
+                        return `<img " src="static/app_crypto/images/crypto_images/${row.ticker.toUpperCase()}.png" alt="Logo" width="30" height="30">  ${data} `
+                    }
+                },
 
                 {
                     "data": "lastPrice", render: function (data, type) {
@@ -99,26 +101,37 @@ $(document).ready(function () {
                 },
 
             ],
+            'columnDefs': [
+                {
+                    "targets": 1, // your case first column
+                    "className": "text-left",
+                    "targets": [0, 2, 3, 4, 5, 6, 7],
+                    "className": "text-center",
+
+
+                },
+
+            ]
 
         });
         setInterval(function () {
             table.ajax.reload();
-        }, 70000);
+        }, 25000);
 
-    }, 1000);
+    }, 0);
 
 
     setTimeout(() => {
 
         $("#spinner-box").hide();
 
-    }, 750);
+    }, 10000);
 
     setTimeout(() => {
 
         $("#market_data_table").show();
 
-    }, 1000);
+    }, 0);
 
 
 });
