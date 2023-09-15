@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 
@@ -89,54 +91,126 @@
             border: 1px solid rgb(181, 44, 255);
 
         }
+
+        .gradient-custom-2 {
+            /* fallback for old browsers */
+            background: grey;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, #5c00a7, #5a0d8b, #6d359a, #8f3671);
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, #5c00a7, #5a0d8b, #6d359a, #8f3671);
+        }
+
+        @media (min-width: 769px) {
+            .gradient-form {
+                height: 100vh !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .gradient-custom-2 {
+                border-top-right-radius: .3rem;
+                border-bottom-right-radius: .3rem;
+            }
+        }
     </style>
 
 </head>
 
 <body>
-    <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
-            <div class="user_card">
-                <div class="d-flex justify-content-center">
+    <section class="h-100 gradient-form" style="background-color: #505050;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card bg-dark rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+
+                                    <div class="text-center text-light">
+                                        <img src="{% static 'app_crypto/images/candle.png' %}" style="width: 150px;"
+                                            alt="logo">
+                                        <h4 class="mt-2 mb-5 pb-1">CandleFarm</h4>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <div class="d-flex justify-content-center">
 
 
-                    <h3 id="form-title">LOGIN</h3>
-                </div>
-                <div class="d-flex justify-content-center form_container">
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <h5 id="form-title">Login</h3>
+                                        </div>
+                                        <div class="d-flex justify-content-center form_container">
+                                            <form method="POST" action="">
+                                                {% csrf_token %}
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i
+                                                                class="fas fa-user"></i></span>
+                                                    </div>
+                                                    <input type="text" name="username" placeholder="Username..."
+                                                        class="form-control">
+                                                </div>
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                                    </div>
+                                                    <input type="password" name="password" placeholder="Password..."
+                                                        class="form-control">
+                                                </div>
+
+                                                <div class="d-flex justify-content-center mt-3 login_container">
+                                                    <button class="btn btn-dark border-custom"
+                                                        type="submit">Login</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        {% for message in messages %}
+                                        <p id="messages">{{message}}</p>
+                                        {% endfor %}
+
+                                        <div class="mt-4">
+                                            <div class="d-flex justify-content-center links">
+                                                Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign
+                                                    Up</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <input type="text" name="username" placeholder="Username..." class="form-control">
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4 ">
+                                    <h4 class="mb-4" style="text-align: center;">Find the cryptocurrency market data you
+                                        need, just one
+                                        click away!
+                                    </h4>
+                                    <div>
+                                        <ul class="small mb-0">Here you will find:</ul>
+                                        <br>
+                                        <ul list-style-image: url('/static/app_crypto/images/candle.png');>
+                                            <li>
+                                                OHLC
+                                                data for biggest cryptocurrencies in market</li>
+                                            <li>Customizable plot by date range</li>
+                                            <li>Downloadable data in many formats</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
                             </div>
-                            <input type="password" name="password" placeholder="Password..." class="form-control">
                         </div>
-
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                            <button class="btn btn-dark border-custom" type="submit">Login</button>
-                        </div>
-                    </form>
-
-                </div>
-                {% for message in messages %}
-                <p id="messages">{{message}}</p>
-                {% endfor %}
-
-                <div class="mt-4">
-                    <div class="d-flex justify-content-center links">
-                        Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
 </body>
+
+
 
 </html>

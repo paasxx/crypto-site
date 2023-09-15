@@ -116,7 +116,7 @@ $(document).ready(function () {
         });
         setInterval(function () {
             table.ajax.reload();
-        }, 25000);
+        }, 15000);
 
     }, 0);
 
